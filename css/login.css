@@ -41,10 +41,18 @@ input[type=text],[type=password] {
     width:100%;
     height:40px;
     margin-top:15px;
-    font-size:18px;
-    color: #ff670c;
+    font-size:15px;
+    color: #444444;
     border: solid 1px #531300;
     border-radius: 5px;
+}
+input::placeholder{
+    color: rgb(190, 190, 190);
+    font-size: 15px;
+}
+input:focus {
+    outline: none !important;
+    box-shadow: 0 0 10px #ff670c;
 }
 input[type=button] {
     background:linear-gradient(to bottom,#531300 5%,#531300 100%);
@@ -55,7 +63,7 @@ input[type=button] {
     height:60px;
     margin-top:15px;
     font-size:18px;
-    font-weight:700;
+    font-weight:400;
     cursor:pointer;
     text-shadow:0 1px 0 #ff670c;
     border-radius: 5px;
@@ -64,9 +72,11 @@ input[type=button]:hover {
     background:linear-gradient(to bottom,#ff670c 5%,#ff670c 100%);
 }
 .login-wrapper a {
+    font-size: 15px;
     text-decoration:none;
     color:#ff670c;
 }
 p.question {
+    font-size: 15px;
     margin-bottom:0;
 }
