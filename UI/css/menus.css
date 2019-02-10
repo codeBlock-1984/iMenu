@@ -43,17 +43,27 @@
     background: #ffffff;
     border-radius: 5px;
     box-sizing: border-box;
+    overflow: hidden;
 }
-#menu-box{
-    width: 99%;
-    height: 480px;
-    padding: 20px;
-    background: #ffffff;
+#menu-box-outer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    height: 500px;
     border-radius: 5px;
     -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
           box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5); 
+    overflow: scroll;
+}
+.menu-box{
+    width: 99%;
+    height: 120px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    
 }
 #menu-box-container h1{
     font-size: 25px;
@@ -66,7 +76,7 @@
     width: 150px;
     height: 100px;
     border-radius: 50%;
-    margin-right: -30px;
+    margin-right: -20px;
     background-image: url('../imgs/chicken_crispy_salad.jpeg');
     background-repeat: no-repeat;
     background-position: center;
@@ -86,7 +96,7 @@
     padding-left: 50px;
     border-radius: 5px;
     background: #ffffff;
-    border: solid #5313000a 1px;
+    border-bottom: solid #5313000a 1px;
 }
 .menuDetails h2{
     font-size: 15px;

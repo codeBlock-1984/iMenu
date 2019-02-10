@@ -7,12 +7,14 @@ for(var i = 0; i < addToMenuElements.length; i++){
 
 function addToMenu(){
     var addToMenuButton = this;
-    var menu = document.getElementById('menu-box');
+    var menuOuter = document.getElementById('menu-box-outer');
+    //var menu = document.getElementById('menu-box');
     var buttonOverlay = this.parentNode;
-    debugger;
-    console.log(buttonDiv);
+    //debugger;
+    console.log(buttonOverlay);
     var buttonDiv = buttonOverlay.parentNode;
-    var mealImageUrl = '../' + buttonDiv.children[1].src;
+    var mealImageUrl = buttonDiv.children[1].src;
+    console.log(mealImageUrl);
     var mealName = buttonDiv.children[2].innerHTML;
     var mealPrice = buttonDiv.children[3].innerHTML;
 
@@ -22,15 +24,18 @@ function addToMenu(){
         var newDetailsDiv = document.createElement('div');
         newDetailsDiv.classList.add('menuDetails');
         var newMenuItemName = document.createElement('h2');
-        var newMenuItemPrice = docmuent.createElement('h6');
+        var newMenuItemPrice = document.createElement('h6');
+        var newMenu = document.createElement('div');
+        newMenu.classList.add('menu-box');
 
         newImageDiv.style.backgroundImage = `url(${mealImageUrl})`;
         newMenuItemName.innerHTML = mealName;
         newMenuItemPrice.innerHTML = mealPrice;
         newDetailsDiv.appendChild(newMenuItemName);
         newDetailsDiv.appendChild(newMenuItemPrice);
-        menu.appendChild(newImageDiv);
-        menu.appendChild(newDetailsDiv);
+        newMenu.appendChild(newImageDiv);
+        newMenu.appendChild(newDetailsDiv);
+        menuOuter.appendChild(newMenu);
 
     }
 }
