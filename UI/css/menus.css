@@ -1,0 +1,128 @@
+.overlay{
+    position: absolute;
+    width: 150px;
+    height: 170px;
+    display: none;
+    border-radius: 5px;
+}
+.meal-box:hover > .overlay{
+    display: initial;
+    background: rgba( 0, 0, 0, 0.5);
+}
+.meal-box{
+    height: 170px !important;
+}
+.meal-box img{
+    margin-top: 10px !important;
+}
+.addToMenu{
+    color: #ffffff !important;
+    font-size: 30px !important;
+}
+.addToMenu:hover{
+    color: #ffffff !important;
+}
+.main-jumbo-box{
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#meal-box-container{
+    width: -moz-calc(100% - 420px);
+    width: -webkit-calc(100% - 420px);
+    width: calc(100% - 420px) !important;
+}
+#menu-box-container{
+    width: 400px;
+    height: 600px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 8px 10px 10px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#menu-box-outer{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5); 
+    overflow: scroll;
+}
+.menu-box{
+    width: 99%;
+    height: 120px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    
+}
+#menu-box-container h1{
+    font-size: 25px;
+    font-weight: 900;
+    color: #531300;
+    margin: 10px;
+    text-align: center;
+}
+.menuImage{
+    width: 150px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: -20px;
+    background-image: url('../imgs/chicken_crispy_salad.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5); 
+    z-index: 1;
+}
+.menuImage img{
+    width: 100px;
+    height: 100px;
+}
+.menuDetails{
+    width: 250px;
+    height: 70px;
+    margin-top: 25px;
+    padding-left: 50px;
+    border-radius: 5px;
+    background: #ffffff;
+    border-bottom: solid #5313000a 1px;
+}
+.menuDetails h2{
+    font-size: 15px;
+    color: #531300;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.menuDetails h6{
+    font-size: 12px;
+    color: #531300;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+@media screen and (max-width:500px){
+    #meal-box-container, #menu-box-container{
+        width: 100% !important;
+        margin: 10px;
+    }
+    .main-inner-box{
+        width: 95%;
+        margin: auto;
+    }
+    .meal-box{
+        margin: 10px !important;
+    }
+}
