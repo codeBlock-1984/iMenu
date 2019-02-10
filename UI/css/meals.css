@@ -35,9 +35,9 @@ header{
   color: #ff670c;
 }
 div.main-inner-wrapper{
-  height: -moz-calc(200% - 130px);
-  height: -webkit-calc(200% - 130px);
-  height: calc(200% - 130px);
+  height: -moz-calc(400% - 130px);
+  height: -webkit-calc(400% - 130px);
+  height: calc(400% - 130px);
   background: #ffffff;
 }
 .main-nav{
@@ -62,6 +62,14 @@ div.main-inner-wrapper{
   height: 60px;
   margin: 20px;
 }
+.icon-bar a{
+  text-decoration: none;
+  color: #531300;
+  cursor: pointer;
+}
+.icon-bar a:hover, .icon-box:active{
+  color: #ff670c !important;
+}
 .icon-box i{
   font-size: 30px;
   color: #531300;
@@ -74,6 +82,7 @@ div.main-inner-wrapper{
   text-align: center;
   font-size: 18px;
   font-weight: 700;
+  color: #531300;
 }
 .main-inner-box{
   width: 90%;
