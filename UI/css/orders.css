@@ -55,4 +55,5 @@ table i{
     color: #ffffff;
     background: #531300;
     border: solid #531300 1px;
+    border-radius: 5px;
 }
