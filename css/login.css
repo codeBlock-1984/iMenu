@@ -1,0 +1,82 @@
+.login-wrapper {
+    position:relative;
+    margin-top:15px;
+    height: 450px !important;
+}
+#login-box {
+    width:358px;
+    margin-top:0;
+    padding:28px 25px;
+    background-color:#fff;
+    border:1px solid #531300;
+    border-radius:5;
+    position:absolute;
+    left:50%;
+    margin-left:-180px;
+    top:0;
+    display: none;
+    transition: display 4s ease;
+    border-radius: 5px;
+}
+#signIn-box {
+    width:358px;
+    margin-top:0;
+    padding:28px 25px;
+    background-color:#fff;
+    border:1px solid #531300;
+    border-radius:5;
+    position:absolute;
+    left:50%;
+    margin-left:-180px;
+    top:0;
+    display: initial;
+    transition: display 4s ease;
+    border-radius: 5px;
+}
+#signIn-box h3 {
+    margin-top:0;
+}
+input[type=text],[type=password] {
+    padding:7px;
+    width:100%;
+    height:40px;
+    margin-top:15px;
+    font-size:15px;
+    color: #444444;
+    border: solid 1px #531300;
+    border-radius: 5px;
+}
+input::placeholder{
+    color: rgb(190, 190, 190);
+    font-size: 15px;
+}
+input:focus {
+    outline: none !important;
+    box-shadow: 0 0 10px #ff670c;
+}
+input[type=button] {
+    background:linear-gradient(to bottom,#531300 5%,#531300 100%);
+    box-shadow: 0 0 0 #531300;
+    border:1px solid #531300;
+    color:#fff;
+    width:306px;
+    height:60px;
+    margin-top:15px;
+    font-size:18px;
+    font-weight:400;
+    cursor:pointer;
+    text-shadow:0 1px 0 #ff670c;
+    border-radius: 5px;
+    }
+input[type=button]:hover {
+    background:linear-gradient(to bottom,#ff670c 5%,#ff670c 100%);
+}
+.login-wrapper a {
+    font-size: 15px;
+    text-decoration:none;
+    color:#ff670c;
+}
+p.question {
+    font-size: 15px;
+    margin-bottom:0;
+}
