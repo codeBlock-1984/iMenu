@@ -1,0 +1,35 @@
+{
+  "name": "imenu_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./index.js",
+    "test": "./node_modules/.bin/mocha --compilers js:@babel/register",
+    "build": "babel ./ --out-dir dist/ --source-maps",
+    "serve": "node ./dist/index.js",
+    "debug": "node --inspect-brk ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.10"
+  }
+}
