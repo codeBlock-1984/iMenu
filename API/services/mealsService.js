@@ -35,6 +35,14 @@ class mealsService {
       error: 'Meal with specified ID not found!',
     });
   }
+
+  static getMeals(req, res) {
+    const allMeals = mealsData;
+    return res.status(200).json({
+      status: 200,
+      data: allMeals,
+    });
+  }
 }
 
 export default mealsService;
