@@ -59,6 +59,23 @@ class mealsService {
       error: 'Meal with specified ID not found!',
     });
   }
+
+  static removeMeal(req, res) {
+    const mealID = parseInt(req.params.id, 10);
+    const singleMeal = mealsData.find(meal => meal.mealID === mealID);
+
+    if (singleMeal) {
+      const deletedMeal = mealsData.splice(singleMeal, 1);
+      return res.status(200).json({
+        status: 200,
+        data: deletedMeal,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: 'Meal with specified ID not found!',
+    });
+  }
 }
 
 export default mealsService;
