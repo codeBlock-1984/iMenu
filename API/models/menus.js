@@ -4,17 +4,14 @@ const menus = [
     menuDate: '2019-02-13',
     menuOptions: [
       {
-        mealID: 2,
         mealName: 'Coconut Rice',
         mealPrice: 780,
       },
       {
-        mealID: 6,
         mealName: 'Okra Stew',
         mealPrice: 1670,
       },
       {
-        mealID: 4,
         mealName: 'Yam & Fish Sauce',
         mealPrice: 1600,
       },
