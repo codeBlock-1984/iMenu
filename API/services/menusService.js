@@ -12,6 +12,23 @@ class menusService {
       data: menusData,
     });
   }
+
+  static getMenu(req, res) {
+    const menuDate = req.params.date;
+    console.log(menuDate);
+    const singleMenu = menusData.find(menu => menu.menuDate === menuDate);
+    console.log(singleMenu);
+    if (singleMenu) {
+      return res.status(200).json({
+        status: 200,
+        data: singleMenu,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: 'Menu with specified date does not exist!',
+    });
+  }
 }
 
 export default menusService;
