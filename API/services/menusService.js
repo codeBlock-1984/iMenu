@@ -29,6 +29,14 @@ class menusService {
       error: 'Menu with specified date does not exist!',
     });
   }
+
+  static getMenus(req, res) {
+    const allMenus = menusData;
+    res.status(200).json({
+      status: 200,
+      data: allMenus,
+    });
+  }
 }
 
 export default menusService;
