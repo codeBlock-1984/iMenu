@@ -13,6 +13,22 @@ class ordersService {
       data: newOrder,
     });
   }
+
+  static getOrdersDay(req, res) {
+    const orderDate = req.params.date;
+    const ordersDay = ordersData.filter(order => order.orderDate === orderDate);
+
+    if (ordersDay) {
+      return res.status(200).json({
+        status: 200,
+        data: ordersDay,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: 'No order records on the date specfied!',
+    });
+  }
 }
 
 export default ordersService;
