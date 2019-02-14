@@ -29,6 +29,25 @@ class ordersService {
       error: 'No order records on the date specfied!',
     });
   }
+
+  static modifyOrder(req, res) {
+    const orderID = parseInt(req.params.id, 10);
+    const orderModified = ordersData.find(order => order.orderID === orderID);
+
+    if (orderModified) {
+      orderModified.orderItems = req.body.orderItems;
+      orderModified.orderBill = req.body.orderBill;
+
+      return res.status(200).json({
+        status: 200,
+        data: orderModified,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: `Order with id: ${orderID} does not exist!`,
+    });
+  }
 }
 
 export default ordersService;
