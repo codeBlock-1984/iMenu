@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import expressValidator from 'express-validator';
 import mealsRoute from './routes/mealsRoute';
 import menusRoute from './routes/menusRoute';
+import ordersRoute from './routes/ordersRoute';
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1/meals', mealsRoute);
 app.use('/api/v1/menus', menusRoute);
+app.use('/api/v1/orders', ordersRoute);
 
 app.get('/', (req, res) => {
   res.statusCode = 200;
