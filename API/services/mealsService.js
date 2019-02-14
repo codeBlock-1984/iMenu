@@ -1,14 +1,18 @@
-// import { validationResult } from 'express-validator/check';
+import { validationResult } from 'express-validator/check';
 import meals from '../models/meals';
 
 const mealsData = meals;
 
 class mealsService {
   static createMeal(req, res) {
-    // const vError = validationResult(req);
-    // if (!vError) {
-    //  res.status(400).json(vError.array());
-    //  }
+    const vError = validationResult(req);
+    if (!vError.isEmpty()) {
+      const errorMsg = vError.array()[0].msg;
+      return res.status(400).json({
+        status: 400,
+        error: errorMsg,
+      });
+    }
     req.body.mealID = mealsData.length + 1;
     mealsData.push(req.body);
     return res.status(200).json({
@@ -18,6 +22,15 @@ class mealsService {
   }
 
   static editMeal(req, res) {
+    const vError = validationResult(req);
+    if (!vError.isEmpty()) {
+      const errorMsg = vError.array()[0].msg;
+      return res.status(400).json({
+        status: 400,
+        error: errorMsg,
+      });
+    }
+
     const mealID = parseInt(req.params.id, 10);
     const newMeal = req.body;
     const singleMeal = mealsData.find(meal => meal.mealID === mealID);
@@ -45,6 +58,15 @@ class mealsService {
   }
 
   static getMeal(req, res) {
+    const vError = validationResult(req);
+    if (!vError.isEmpty()) {
+      const errorMsg = vError.array()[0].msg;
+      return res.status(400).json({
+        status: 400,
+        error: errorMsg,
+      });
+    }
+
     const mealID = parseInt(req.params.id, 10);
     const singleMeal = mealsData.find(meal => meal.mealID === mealID);
 
@@ -61,6 +83,15 @@ class mealsService {
   }
 
   static removeMeal(req, res) {
+    const vError = validationResult(req);
+    if (!vError.isEmpty()) {
+      const errorMsg = vError.array()[0].msg;
+      return res.status(400).json({
+        status: 400,
+        error: errorMsg,
+      });
+    }
+
     const mealID = parseInt(req.params.id, 10);
     const singleMeal = mealsData.find(meal => meal.mealID === mealID);
 
