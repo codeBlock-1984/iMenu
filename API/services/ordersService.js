@@ -57,10 +57,27 @@ class ordersService {
     console.log(singleOrder);
 
     if (singleOrder) {
-        console.log(`This is ${singleOrder}`);
+      console.log(`This is ${singleOrder}`);
       return res.status(200).json({
         status: 200,
         data: singleOrder,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: `Order with ID: ${orderID} does not exist!`,
+    });
+  }
+
+  static cancelOrder(req, res) {
+    const orderID = parseInt(req.params.id, 10);
+    const deletedOrder = ordersData.find(order => order.orderID === orderID);
+
+    if (deletedOrder) {
+      ordersData.splice(deletedOrder, 1);
+      return res.status(200).json({
+        status: 200,
+        data: deletedOrder,
       });
     }
     return res.status(404).json({
