@@ -48,6 +48,26 @@ class ordersService {
       error: `Order with id: ${orderID} does not exist!`,
     });
   }
+
+  static getOrder(req, res) {
+    const orderID = parseInt(req.params.id, 10);
+    const singleOrder = ordersData.find(order => order.orderID === orderID);
+    console.log(req.params.id);
+    console.log(orderID);
+    console.log(singleOrder);
+
+    if (singleOrder) {
+        console.log(`This is ${singleOrder}`);
+      return res.status(200).json({
+        status: 200,
+        data: singleOrder,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: `Order with ID: ${orderID} does not exist!`,
+    });
+  }
 }
 
 export default ordersService;
