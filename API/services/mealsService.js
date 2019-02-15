@@ -14,10 +14,11 @@ class mealsService {
       });
     }
     req.body.mealID = mealsData.length + 1;
-    mealsData.push(req.body);
+    const singleMeal = req.body;
+    mealsData.push(singleMeal);
     return res.status(200).json({
       status: 200,
-      data: mealsData,
+      data: singleMeal,
     });
   }
 
