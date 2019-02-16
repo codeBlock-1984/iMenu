@@ -1,4 +1,7 @@
 import { check } from 'express-validator/check';
+import meals from '../models/meals';
+
+const mealsData = meals;
 
 const mealsValidator = {
   mealBodyValidator: [
@@ -24,6 +27,15 @@ const mealsValidator = {
       .withMessage('Meal ID is required!')
       .isInt({ allow_leading_zeroes: false })
       .withMessage('ID must be a valid integer value!'),
+  ],
+  checkMealExists: [
+    check('mealName')
+      .custom((mealName) => {
+        const existingMeal = mealsData.find(meal => meal.mealName === mealName);
+        if (!existingMeal) return true;
+        return false;
+      })
+      .withMessage('Meal already exists!'),
   ],
 };
 

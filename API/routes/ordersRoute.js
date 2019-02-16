@@ -6,9 +6,11 @@ const router = express.Router();
 const {
   placeOrder, getOrdersDay, modifyOrder, getOrder, cancelOrder,
 } = ordersService;
-const { orderBodyValidator, orderDateValidator, orderIDValidator } = ordersValidator;
+const {
+  orderBodyValidator, orderDateValidator, orderIDValidator, checkOrderExists, checkOrderAllowed,
+} = ordersValidator;
 
-router.post('/', orderBodyValidator, placeOrder);
+router.post('/', orderBodyValidator, checkOrderExists, checkOrderAllowed, placeOrder);
 router.get('/:date', orderDateValidator, getOrdersDay);
 router.get('/:id', getOrder);
 router.put('/:id', orderIDValidator, orderBodyValidator, modifyOrder);

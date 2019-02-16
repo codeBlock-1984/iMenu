@@ -45,9 +45,9 @@ describe("Orders", () => {
   describe("POST /orders", () => {
     it("should post an order with all required fields", (done) => {
       const order = {
-        userID: 4,
+        userID: 9,
         menuID: 1,
-        orderDate: '2019-02-14',
+        orderDate: '2019-02-16',
         orderBill: 4050,
         orderItems: [
           {

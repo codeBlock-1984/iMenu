@@ -1,4 +1,9 @@
 import { check } from 'express-validator/check';
+import menus from '../models/menus';
+
+const menusData = menus;
+const newDate = new Date();
+const thisDay = newDate.toISOString().slice(0, 10);
 
 const menusValidator = {
   menuBodyValidator: [
@@ -27,6 +32,17 @@ const menusValidator = {
       .isISO8601()
       .withMessage('Date must be of the format YYYY-MM-DD!')
       .trim(),
+  ],
+  checkMenuIsSet: [
+    check('menuDate')
+      .equals(thisDay)
+      .withMessage('You can only set menu for current day!')
+      .custom((menuDate) => {
+        const existingMenu = menusData.find(menu => menu.menuDate === menuDate);
+        if (!existingMenu) return true;
+        return false;
+      })
+      .withMessage('Menu has been set for today!'),
   ],
 };
 
