@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simple, and easy to use. An app to make your meal booking experience awesome.">
+  <meta name="keywords" content="Meal-booking, online menu, meal, orders">
+  <!-- My title goes here -->
+  <title>iMenu - Your Online Meal Booking App</title>
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="css/records.css">
+  <link rel="stylesheet" href="css/orders.css">
+  <link rel="stylesheet" href="css/menus.css">
+  <link rel="stylesheet" href="css/meals.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+
+<body>
+  <header class="main-header">
+    <h1>iMenu</h1>
+    <a href="login.html"><span>Log out</span></a>
+
+  </header>
+  
+  <div class="main-inner-wrapper bg-red">
+    <nav class="main-nav">
+      <div class="icon-bar">
+        <div class="icon-box"><a href="#"><i id="record-icon" class="fas fa-file-invoice-dollar"></i><span>Records</span></a></div> 
+        <div class="icon-box"><a href="menus.html"><i id="menu-icon" class="fab fa-elementor"></i><span>Menus</span></a></div> 
+        <div class="icon-box"><a href="meals.html"><i id="meal-icon" class="fas fa-hamburger"></i><span>Meals</span></a></div>
+        <div class="icon-box"><a href="orders.html"><i id="order-icon" class="fas fa-utensils"></i><span>Orders</span></a></div>
+      </div>  
+    </nav>
+    
+    <div class="main-jumbo-box">
+        <table>
+            <caption>Records</caption>
+            <tbody>
+                <tr>
+                    <th>S/N</th>
+                    <th>Order ID</th>
+                    <th>Customer ID</th>
+                    <th>Order Details</th>
+                    <th>Bill</th>
+                    <th>Date</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>#102343</td>
+                    <td>#221003</td>
+                    <td>Rice & Dodo, Corn Soup, Rice & Stew</td>
+                    <td>#4,600</td>
+                    <td>11/02/2019</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>#102344</td>
+                    <td>#221004</td>
+                    <td>Fish & Chips, Swedish Bread & Soup, Avocado Salad</td>
+                    <td>#7,500</td>
+                    <td>11/02/2019</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>#102345</td>
+                    <td>#221006</td>
+                    <td>Veggie Mix, Crispy Chicken & Salad</td>
+                    <td>#2,800</td>
+                    <td>12/02/2019</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>#102347</td>
+                    <td>#221007</td>
+                    <td>Egg Sandwich, Okro Soup, Turkey Leg</td>
+                    <td>#6,380</td>
+                    <td>13/02/2019</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total Bills</td>
+                    <td>#5,820,000</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div> <!-- End main-jumbo-box-->
+
+  </div> 
+
+  <footer>
+    <div class="footer-bar">
+        <p class="footer-text">Copyright &copy; iMenu 2019</p>
+    </div>
+  </footer>
+  <!-- Custom scripts -->
+  <script src="js/script.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>
