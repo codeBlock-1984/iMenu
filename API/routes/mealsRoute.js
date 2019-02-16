@@ -6,9 +6,9 @@ const router = express.Router();
 const {
   createMeal, editMeal, getMeals, getMeal, removeMeal,
 } = mealsService;
-const { mealBodyValidator, mealIDValidator } = mealsValidator;
+const { mealBodyValidator, mealIDValidator, checkMealExists } = mealsValidator;
 
-router.post('/', mealBodyValidator, createMeal);
+router.post('/', mealBodyValidator, checkMealExists, createMeal);
 router.put('/:id', mealBodyValidator, mealIDValidator, editMeal);
 router.get('/', getMeals);
 router.get('/:id', mealIDValidator, getMeal);

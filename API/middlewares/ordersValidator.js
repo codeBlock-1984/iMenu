@@ -1,4 +1,9 @@
 import { check } from 'express-validator/check';
+import orders from '../models/orders';
+
+const ordersData = orders;
+const newDate = new Date();
+const thisDay = newDate.toISOString().slice(0, 10);
 
 const ordersValidator = {
   orderBodyValidator: [
@@ -44,6 +49,20 @@ const ordersValidator = {
       .isISO8601()
       .withMessage('Date must be of the format YYYY-MM-DD!')
       .trim(),
+  ],
+  checkOrderExists: [
+    check('userID')
+      .custom((userID) => {
+        const existingOrder = ordersData.find(order => order.userID === userID);
+        if (!existingOrder) return true;
+        return false;
+      })
+      .withMessage('Order already exists!'),
+  ],
+  checkOrderAllowed: [
+    check('orderDate')
+      .equals(thisDay)
+      .withMessage('You can only place an order on current day!'),
   ],
 };
 

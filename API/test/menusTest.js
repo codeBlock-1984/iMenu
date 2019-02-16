@@ -64,7 +64,7 @@ describe("Menus", () => {
     it("should post a menu with all required fields", (done) => {
       const menu = {
         menuID: 2,
-        menuDate: '2019-02-14',
+        menuDate: '2019-02-16',
         menuOptions: [
           {
             mealName: 'CoconutRice',
