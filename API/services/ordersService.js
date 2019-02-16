@@ -37,7 +37,7 @@ class ordersService {
     const orderDate = req.params.date;
     const ordersDay = ordersData.filter(order => order.orderDate === orderDate);
 
-    if (ordersDay) {
+    if (!(ordersDay.length === 0)) {
       return res.status(200).json({
         status: 200,
         data: ordersDay,
