@@ -62,9 +62,11 @@ describe("Menus", () => {
 
   describe("POST /menus", () => {
     it("should post a menu with all required fields", (done) => {
+      const newDate = new Date();
+      const thisDay = newDate.toISOString().slice(0, 10);
       const menu = {
         menuID: 2,
-        menuDate: '2019-02-16',
+        menuDate: thisDay,
         menuOptions: [
           {
             mealName: 'CoconutRice',

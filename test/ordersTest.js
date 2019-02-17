@@ -44,10 +44,12 @@ describe("Orders", () => {
 
   describe("POST /orders", () => {
     it("should post an order with all required fields", (done) => {
+      const newDate = new Date();
+      const thisDay = newDate.toISOString().slice(0, 10);
       const order = {
         userID: 9,
         menuID: 1,
-        orderDate: '2019-02-16',
+        orderDate: thisDay,
         orderBill: 4050,
         orderItems: [
           {
