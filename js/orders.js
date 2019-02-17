@@ -37,7 +37,7 @@ function addToOrder(){
     newRow.appendChild(delBtnCell);
     orderTable.appendChild(newRow);
 
-    document.getElementById('totalCell').innerHTML = '#' + totalBill;
+    document.getElementById('total-cell').innerHTML = '#' + totalBill;
 
 }
 

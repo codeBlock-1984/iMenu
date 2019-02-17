@@ -38,31 +38,29 @@
     </nav>
     
     <div class="main-jumbo-box">
-    <div id="menu-box-container">
+    <div id="menu-box-container" class="order-box-container">
       <h1>My Order</h1>
       <div id="order-box-outer">
+        <ul>
+          <li>ITEM</li>
+          <li>PRICE</li>
+        </ul>
+      <div id="order-box-inner">
       <table>
           <tbody id="order-table">
-          <tr>
-              <th></th>
-              <th>ITEM</th>
-              <th>PRICE</th>
-          </tr>
           </tbody>
-          <tfoot>
-              <tr>
-                <td></td>
-                <td>Total</td>
-                <td id="totalCell"></td>
-                <td></td>
-              </tr>
-          </tfoot>
-      </table>
-      <ul>
-          <li><a id='cancelOrder' href="#">Cancel Order</a></li>
-          <li><a id='placeOrder' href="#">Place Order</a> </li>
-      </ul>  
-      </div>
+      </table> 
+    </div>
+    <ul id="total-box">
+        <li>TOTAL</li>
+        <li id="total-cell">#00.00</li>
+      </ul>
+    <ul>
+        <li><a id='cancelOrder' href="#">Cancel Order</a></li>
+        <li><a id='placeOrder' href="#">Place Order</a> </li>
+    </ul> 
+    </div>
+      
     </div>
       
     <div id="meal-box-container" class="main-inner-box">
