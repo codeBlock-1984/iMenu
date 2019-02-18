@@ -58,4 +58,10 @@ function deleteOrderItem(){
   } else return;
     
 }
+var CancelOrderButton = document.getElementById('cancelOrder');
+  CancelOrderButton.addEventListener('click', cancelOrder);
+function cancelOrder(){
+  var orderTable = document.getElementById('order-table');
+  orderTable.innerHTML = '';
+}
 

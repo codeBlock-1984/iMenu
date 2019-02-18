@@ -1,0 +1,69 @@
+div#checkout-box{
+    width: 60%;
+    height: 500px;
+    margin-left: 50px;
+}
+div#checkout-box table{
+    width: 90%;
+    margin: 20px auto;
+    border: solid #531300 1px;
+    border-radius: 5px !important;
+}
+div#checkout-box table th{
+    text-align: center;
+    border-bottom: #531300 solid 1px;
+}
+div#checkout-box table th:nth-child(2){
+    width: 120px;
+}
+div#checkout-box table th:nth-child(1){
+    width: 20px;
+}
+div#checkout-box table th:nth-child(3){
+    width: 60px;
+}
+div#checkout-box table td:nth-child(1), div#checkout-box table td:nth-child(2), div#checkout-box table td:nth-child(3){
+    text-align: center;
+}
+div#checkout-box table tr:nth-child(1) {
+    line-height: 35px;
+    padding: 10px;
+    color: #531300;
+    background: #ffffff;
+    border-bottom: 5px !important;
+}
+div#checkout-box table tr{
+    line-height: 25px;
+}
+div#checkout-box table tfoot tr{
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-top: solid 1px #531300 !important;
+}
+div#checkout-box table tfoot{
+    border-top: 0 !important;
+}
+div#checkout-box table caption {
+    font-size: 20px;
+    color: #531300;
+    padding-bottom: 10px;
+    text-align: left;
+}
+div#pay-box{
+    width: 35%;
+    height: 500px;
+    padding: 200px 50px;
+}
+div#pay-box a{
+    padding: 30px 10px;
+    width: 300px;
+    height: 100px;
+    color: #ffffff;
+    background: #531300;
+    border: solid #531300 1px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+div#pay-box a:hover{
+    background: #ff670c;
+}
