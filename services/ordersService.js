@@ -77,6 +77,15 @@ class ordersService {
     });
   }
 
+  static getOrders(req, res) {
+    const allOrders = ordersData;
+
+    return res.status(200).json({
+      status: 200,
+      data: allOrders,
+    });
+  }
+
   static getOrder(req, res) {
     const orderID = parseInt(req.params.id, 10);
     const singleOrder = ordersData.find(order => order.orderID === orderID);

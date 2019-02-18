@@ -4,7 +4,7 @@ import ordersValidator from '../middlewares/ordersValidator';
 
 const router = express.Router();
 const {
-  placeOrder, getOrdersDay, modifyOrder, getOrder, cancelOrder,
+  placeOrder, getOrdersDay, modifyOrder, getOrder, getOrders, cancelOrder,
 } = ordersService;
 const {
   orderBodyValidator, orderDateValidator, orderIDValidator, checkOrderExists, checkOrderAllowed,
@@ -12,6 +12,7 @@ const {
 
 router.post('/', orderBodyValidator, checkOrderExists, checkOrderAllowed, placeOrder);
 router.get('/:date', orderDateValidator, getOrdersDay);
+router.get('/', getOrders);
 router.get('/:id', getOrder);
 router.put('/:id', orderIDValidator, orderBodyValidator, modifyOrder);
 router.delete('/:id', orderIDValidator, cancelOrder);
