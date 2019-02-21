@@ -7,7 +7,8 @@ import menusRoute from './routes/menusRoute';
 import ordersRoute from './routes/ordersRoute';
 
 const app = express();
-const port = 3000 || process.env.PORT;
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
 
 app.use(expressValidator());
 app.use(morgan('tiny'));
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('<h1>iMenu API</h1>');
 });
 
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log(`iMenu server listening on port ${port}!`);
 });
 
