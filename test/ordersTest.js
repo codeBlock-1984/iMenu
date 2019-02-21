@@ -6,9 +6,29 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
+const order = {
+  userID: 4,
+  menuID: 1,
+  orderDate: '2019-02-14',
+  orderBill: 4050,
+  orderItems: [
+    {
+      mealName: 'Coconut Rice',
+      mealPrice: 780,
+    },
+    {
+      mealName: 'Okra Stew',
+      mealPrice: 1670,
+    },
+    {
+      mealName: 'Yam & Fish Sauce',
+      mealPrice: 1600,
+    },
+  ],
+};
+
 describe("Orders", () => {
-/*
-    describe("GET /orders", () => {
+  describe("GET /orders", () => {
     it("should get all orders", (done) => {
       chai.request(app).get('/api/v1/orders').end((err, res) => {
         res.should.have.status(200);
@@ -19,7 +39,7 @@ describe("Orders", () => {
       });
     });
   });
-*/
+
   describe("GET /orders/:date", () => {
     it("should get orders if date is found", (done) => {
       const date = '2019-02-14';
@@ -46,26 +66,8 @@ describe("Orders", () => {
     it("should post an order with all required fields", (done) => {
       const newDate = new Date();
       const thisDay = newDate.toISOString().slice(0, 10);
-      const order = {
-        userID: 9,
-        menuID: 1,
-        orderDate: thisDay,
-        orderBill: 4050,
-        orderItems: [
-          {
-            mealName: 'Coconut Rice',
-            mealPrice: 780,
-          },
-          {
-            mealName: 'Okra Stew',
-            mealPrice: 1670,
-          },
-          {
-            mealName: 'Yam & Fish Sauce',
-            mealPrice: 1600,
-          },
-        ],
-      };
+      order.orderDate = thisDay;
+      order.userID = 9;
 
       chai.request(app).post('/api/v1/orders').set('Accept', 'application/x-www-form-urlencoded').send(order)
         .end((err, res) => {
@@ -80,26 +82,7 @@ describe("Orders", () => {
   describe("PUT /orders", () => {
     it("should modify an order", (done) => {
       const id = 2;
-      const order = {
-        userID: 4,
-        menuID: 1,
-        orderDate: '2019-02-14',
-        orderBill: 4050,
-        orderItems: [
-          {
-            mealName: 'Coconut Rice',
-            mealPrice: 780,
-          },
-          {
-            mealName: 'Okra Stew',
-            mealPrice: 1670,
-          },
-          {
-            mealName: 'Yam & Fish Sauce',
-            mealPrice: 1600,
-          },
-        ],
-      };
+
       chai.request(app).put(`/api/v1/orders/${id}`).send(order).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');

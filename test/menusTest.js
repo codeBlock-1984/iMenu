@@ -21,25 +21,8 @@ describe("Menus", () => {
   describe("GET /menus/:date", () => {
     it("should get a single menu if date is found", (done) => {
       const date = '2019-02-14';
-      const menu = {
-        menuID: 2,
-        menuDate: '2019-02-27',
-        menuOptions: [
-          {
-            mealName: 'Coconut Rice',
-            mealPrice: 780,
-          },
-          {
-            mealName: 'Okra Stew',
-            mealPrice: 1670,
-          },
-          {
-            mealName: 'Yam & Fish Sauce',
-            mealPrice: 1600,
-          },
-        ],
-      };
-      chai.request(app).get(`/api/v1/menus/${date}`).send(menu).end((err, res) => {
+
+      chai.request(app).get(`/api/v1/menus/${date}`).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.an('object');
         res.body.should.have.property('data');

@@ -6,6 +6,13 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
+const id = 2;
+const meal = {
+  mealID: 2,
+  mealName: 'Turkey',
+  mealPrice: 700,
+};
+
 describe("Meals", () => {
   describe("GET /meals", () => {
     it("should get all meals", (done) => {
@@ -20,12 +27,6 @@ describe("Meals", () => {
   });
   describe("GET /meals/:id", () => {
     it("should get a single meal if id is found", (done) => {
-      const id = 2;
-      const meal = {
-        mealID: 2,
-        mealName: 'Turkey',
-        mealPrice: 700,
-      };
       chai.request(app).get(`/api/v1/meals/${id}`).send(meal).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.an('object');
@@ -37,8 +38,8 @@ describe("Meals", () => {
       });
     });
     it("should not get a single meal if id is not found", (done) => {
-      const id = 6;
-      chai.request(app).get(`/api/v1/meals/${id}`).end((err, res) => {
+      const delId = 6;
+      chai.request(app).get(`/api/v1/meals/${delId}`).end((err, res) => {
         res.should.have.status(404);
         res.body.should.have.property('error').eql('Meal with specified ID not found!');
         done();
@@ -48,11 +49,6 @@ describe("Meals", () => {
 
   describe("POST /meals", () => {
     it("should post a meal with all required fields", (done) => {
-      const meal = {
-        mealID: 2,
-        mealName: 'Turkey',
-        mealPrice: 700,
-      };
       chai.request(app).post('/api/v1/meals').set('Accept', 'application/x-www-form-urlencoded').send(meal)
         .end((err, res) => {
           res.should.have.status(200);
@@ -65,12 +61,6 @@ describe("Meals", () => {
   });
   describe("PUT /meals", () => {
     it("should modify a meal", (done) => {
-      const id = 2;
-      const meal = {
-        mealID: 2,
-        mealName: 'Turkey',
-        mealPrice: 700,
-      };
       chai.request(app).put(`/api/v1/meals/${id}`).send(meal).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -84,12 +74,6 @@ describe("Meals", () => {
   });
   describe("DELETE /meals/:id", () => {
     it("should delete a meal", (done) => {
-      const id = 2;
-      const meal = {
-        mealID: 2,
-        mealName: 'Turkey',
-        mealPrice: 700,
-      };
       chai.request(app).delete(`/api/v1/meals/${id}`).send(meal).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');

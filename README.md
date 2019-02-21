@@ -1,7 +1,8 @@
 # iMenu
 
-
 [![Build Status](https://travis-ci.org/codeBlock-1984/iMenu.svg?branch=develop)](https://travis-ci.org/codeBlock-1984/iMenu)
+[![Coverage Status](https://coveralls.io/repos/github/codeBlock-1984/iMenu/badge.svg?branch=develop)](https://coveralls.io/github/codeBlock-1984/iMenu?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3f601f5740aef8244b65/maintainability)](https://codeclimate.com/github/codeBlock-1984/iMenu/maintainability)
  
 iMenu is an online application for booking your meals on the go. Sign up is easy and placing an order is hassle free and fast. The UI is appealing and interactive.
 
