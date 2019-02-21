@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/codeBlock-1984/iMenu.git"
   },
-  "keywords": [],
+  "keywords": ["meal-booking", "online menu"],
   "author": "Ihemegbulam",
   "license": "ISC",
   "bugs": {
