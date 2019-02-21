@@ -7,7 +7,7 @@ import menusRoute from './routes/menusRoute';
 import ordersRoute from './routes/ordersRoute';
 
 const app = express();
-const port = 3000 || process.env.port;
+const port = 3000 || process.env.PORT;
 
 app.use(expressValidator());
 app.use(morgan('tiny'));
