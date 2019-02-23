@@ -10,6 +10,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   min-height: 100%;
   width: 100%;
+  position: relative;
+  min-width: 437px;
   margin: 0;
   padding: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/bg.jpg') no-repeat fixed center;
@@ -27,7 +29,7 @@ a {
     background: blue;
 }
 .brand {
-    color: #531300;
+    color: #bb1010;
 }
 .brand-two {
     color: #ff670c;
@@ -43,11 +45,21 @@ a {
 .big-text {
     font-size: 80px;
     font-weight: 1000;
-    color: #531300;
+    color: #bb1010;
 }
 h1 {
     font-size: 40px;
     font-weight: 600;
+}
+.sub-title{
+    position: absolute;
+    top: 0px;
+    margin: 20px 0 0 20px;
+    padding: 0;
+    color: #bb1010;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center; 
 }
 .text-center {
     text-align: center;
@@ -92,7 +104,7 @@ h1 {
 }
 .button-big {
     margin: 20px;
-    width: 300px;
+    width: 50%;
     height: 100px;
     padding-top: 35px;
     color: #ffffff;
@@ -108,6 +120,55 @@ h1 {
 }
 .login-box {
     display: flex;
+    width: 80%;
     margin: 20px auto;
-    width: 600px;
+    flex-direction: row;
+}
+/* media queries */
+@media screen and (max-width:500px){
+    .big-text{
+        font-size: 50px !important;
+        font-weight: 600;
+    }
+    h1{
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .button-big{
+        width: 200px;
+        height: 50px;
+        padding-top: 10px;
+        margin: 8px;
+    }
+    a{
+        font-size: 15px !important;
+    }
+}
+@media screen and (min-width:500px) and (max-width:650px){
+    .login-box {
+        display: flex;
+        width: 100%;
+        margin: 20px auto;
+        flex-direction: row;
+    }
+    .button-big {
+        margin: 10px;
+        width: 50%;
+        height: 80px;
+        padding-top: 25px;
+        color: #ffffff;
+        border: #ffffff solid 1px;
+        text-transform: uppercase;
+        font-size: 20px;
+        text-align: center;
+        line-height: 28px;
+    }
+    .big-text{
+        font-size: 60px !important;
+        font-weight: 700;
+    }
+    h1{
+        font-size: 40px;
+        font-weight: 600;
+    }
 }

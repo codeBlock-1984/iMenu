@@ -1,16 +1,20 @@
 .overlay{
     position: absolute;
     width: 150px;
-    height: 170px;
+    height: 182px;
     display: none;
     border-radius: 5px;
+}
+h1.page-title{
+    font-size: 15px !important; 
+    font-weight: 900;
 }
 .meal-box:hover > .overlay{
     display: initial;
     background: rgba( 0, 0, 0, 0.5);
 }
 .meal-box{
-    height: 170px !important;
+    height: 182px !important;
 }
 .meal-box img{
     margin-top: 10px !important;
@@ -30,9 +34,17 @@
     flex-wrap: wrap;
 }
 #meal-box-container{
-    width: -moz-calc(100% - 420px);
-    width: -webkit-calc(100% - 420px);
-    width: calc(100% - 420px) !important;
+    position: relative;
+    width: -moz-calc(100% - 490px);
+    width: -webkit-calc(100% - 490px);
+    width: calc(100% - 490px) !important;
+    border: solid 1px #f2f2f2;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 #menu-box-container{
     width: 400px;
@@ -43,46 +55,49 @@
     background: #ffffff;
     border-radius: 5px;
     box-sizing: border-box;
-    overflow: hidden;
+}
+#menu-box-wrapper{
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5);
+    background: #ffffff;
 }
 #menu-box-outer{
     display: flex;
     flex-direction: column;
-    height: 500px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
-          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5); 
+    height: 500px; 
     overflow: scroll;
+    background: #ffffff;
 }
 .menu-box{
-    width: 99%;
-    height: 120px;
-    padding: 20px;
-    margin-bottom: 10px;
+    width: 90%;
+    height: 80px;
+    padding: 10px 20px;
+    margin: 10px auto;
     background: #ffffff;
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
+    border: #ff670c solid 1px;
+    border-radius: 5px;
     
 }
 #menu-box-container h1{
     font-size: 25px;
     font-weight: 900;
-    color: #531300;
+    color: #bb1010;
     margin: 10px;
     text-align: center;
 }
 .menuImage{
-    width: 150px;
-    height: 100px;
-    border-radius: 50%;
+    width: 100px;
+    height: 50px;
     margin-right: -20px;
     background-image: url('../imgs/chicken_crispy_salad.jpeg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
-          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5); 
     z-index: 1;
 }
 .menuImage img{
@@ -91,29 +106,46 @@
 }
 .menuDetails{
     width: 250px;
-    height: 70px;
-    margin-top: 25px;
+    height: 50px;
     padding-left: 50px;
     border-radius: 5px;
     background: #ffffff;
-    border-bottom: solid #5313000a 1px;
 }
 .menuDetails h2{
     font-size: 15px;
-    color: #531300;
+    color: #000000;
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: left;
 }
 .menuDetails h6{
     font-size: 12px;
-    color: #531300;
+    color: #000000;
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: left;
 }
-
+a#set-menu{
+    display: block;
+    width: 330px;
+    margin: 20px auto;
+    padding: 10px;
+    color: #ffffff;
+    background: #bb1010;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+a#set-menu:hover{
+display: block;
+background: #ff670c;
+color: #ffffff !important;
+}
 @media screen and (max-width:500px){
+    .main-jumbo-box{
+        flex-direction: column;
+    }
     #meal-box-container, #menu-box-container{
         width: 100% !important;
         margin: 10px;
@@ -126,3 +158,17 @@
         margin: 10px !important;
     }
 }
+@media screen and (max-width:800px){
+    .main-jumbo-box{
+        flex-direction: column;
+    }
+    #meal-box-container{
+        width: 90% !important;
+        margin: 10px auto;
+    }
+    #menu-box-container{
+        margin: auto;
+    }
+
+}
+

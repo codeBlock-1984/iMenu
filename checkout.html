@@ -38,16 +38,11 @@
       </div>  
     </nav>
     
-    <div class="main-jumbo-box">
-      <div id="checkout-box">
+    <div id="checkout-main-container" class="main-jumbo-box">
+      <div id="summary-box">
         <table>
-            <caption>Checkout</caption>
+            <caption>Order Summary</caption>
             <tbody>
-                <tr>
-                    <th>S/N</th>
-                    <th>Items</th>
-                    <th>Price</th>
-                </tr>
                 <tr>
                     <td>1</td>
                     <td>Rice & Dodo</td>
@@ -92,14 +87,44 @@
             <tfoot>
                 <tr>
                     <td></td>
-                    <td>Total Bills</td>
-                    <td>#520,000</td>
+                    <td>Subtotal</td>
+                    <td>#52000</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Sales tax 5%</td>
+                    <td>#2600</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Total</td>
+                    <td>#54600</td>
                 </tr>
             </tfoot>
         </table>
       </div>
-      <div id="pay-box">
-          <a href="#">Proceed to Payment Portal</a>
+      <div class="checkout-box">
+          <h1 class="page-title">Delivery Information</h1>
+          <div class="checkout-box-inner">
+                <div id="info">
+                    <label for="City">City</label>
+                    <select name="City" id="city">
+                        <option value="Select City">Select city</option>
+                        <option value="Lagos">Lagos</option>
+                        <option value="Ikeja">Ikeja</option>
+                    </select>
+                    <label for="Area">Area</label>
+                    <select name="Area" id="area">
+                        <option value="Select Area">Select area</option>
+                        <option value="Maryland">Maryland</option>
+                        <option value="Ikoyi">Ikoyi</option>
+                        <option value="Lekki">Lekki</option>
+                    </select>
+                    <label for="Address">Street Address</label>
+                    <textarea name="Address" id="address" cols="80" rows="4"></textarea>
+                    <a id="pay-button" href="payment.html">Checkout</a>
+                </div>
+          </div>
       </div>
 
     </div> <!-- End main-jumbo-box-->
@@ -113,6 +138,5 @@
   </footer>
   <!-- Custom scripts -->
   <script src="js/script.js"></script>
-  <script src="js/orders.js"></script>
 </body>
 </html>

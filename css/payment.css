@@ -1,0 +1,141 @@
+.payment-box{
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+}
+div#contact-box{
+    width: 650px;
+    margin: 0 auto;
+    padding: 20px 0 0 30px;
+}
+p{
+    font-size: 13px !important;
+    font-kerning: auto;
+    margin-top: 10px !important;
+}
+span.label{
+    font-weight: bolder;
+    margin-right: 40px;
+}
+span.label:hover{
+    color: black;
+}
+div.single-bar{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 10px 40px;
+    margin: 0px 20px 0 20px;
+    background: #ffffff;
+}
+div.single-bar input[type="radio"]{
+    width: 40px;
+    height: 40px;
+}
+div.single-bar input[type="radio"]:focus{
+    box-shadow: unset !important;
+}
+div#cash-pay-box{
+    display: none;
+    position: relative;
+    width: 634px;
+    height: 250px;
+    margin: 0 auto;
+    padding: 20px 40px 0 120px;
+    background: #ffffff;
+}
+input[type="tel"]{
+    margin-top: 5px;
+    font-size: 15px;
+    color: #000000 !important;
+}
+input#cc-number{
+    width: 340px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 30px;
+}
+img#card-icon{
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    background: #ffffff;
+    top: 47px;
+    right: 127px;
+    padding: 2px 8px;
+    border: solid 1px #cccccc;
+}
+label.sub-label{
+    display: inline-block;
+}
+label.first-label{
+    margin-right: 162px;
+}
+input[type="tel"]#cc-month, input[type="tel"]#cc-year, input[type="tel"]#cc-cvv{
+    height: 40px;
+    text-align: center;
+}
+input[type="tel"]:focus{
+    box-shadow: unset;
+
+}
+input[type="tel"]#cc-month{
+    width: 100px;
+    margin-right: 10px;
+}
+input[type="tel"]#cc-year{
+    width: 100px;
+    margin-right: 48px;
+}
+input[type="tel"]#cc-cvv{
+    width: 120px;
+}
+div#cash-pay-box a{
+        display: block;
+        width: 387px;
+        margin-top: 20px;
+        padding: 10px;
+        color: #ffffff;
+        background: #bb1010;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+}
+div#cash-pay-box a:hover{
+    display: block;
+    background: #ff670c;
+    color: #ffffff !important;
+}
+img#cards{
+    width: 200px;
+    height: 40px;
+}
+div.single-bar img{
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+}
+.pay-box{
+    padding-bottom: 30px !important;
+}
+.pay-box p{
+    margin-left: 40px;
+    font-weight: 900;
+}
+a#place-order-btn{
+    display: block;
+    width: 387px;
+    margin: 20px auto;
+    padding: 10px;
+    color: #ffffff;
+    background: #bb1010;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+a#place-order-btn:hover{
+display: block;
+background: #ff670c;
+color: #ffffff !important;
+}
