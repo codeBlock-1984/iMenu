@@ -1,31 +1,31 @@
-var addToMenuElements = document.getElementsByClassName('addToMenu');
+const addToMenuElements = document.getElementsByClassName('addToMenu');
 
-for(var i = 0; i < addToMenuElements.length; i++){
-  var element = addToMenuElements[i];  
+for(let i = 0; i < addToMenuElements.length; i++){
+  const element = addToMenuElements[i];  
   element.addEventListener('click', addToMenu);
 }
 
 function addToMenu(){
-    var addToMenuButton = this;
-    var menuOuter = document.getElementById('menu-box-outer');
-    //var menu = document.getElementById('menu-box');
-    var buttonOverlay = this.parentNode;
+    const addToMenuButton = this;
+    const menuOuter = document.getElementById('menu-box-outer');
+    //const menu = document.getElementById('menu-box');
+    const buttonOverlay = this.parentNode;
     //debugger;
     console.log(buttonOverlay);
-    var buttonDiv = buttonOverlay.parentNode;
-    var mealImageUrl = buttonDiv.children[1].src;
+    const buttonDiv = (buttonOverlay.parentNode).children[2];
+    const mealImageUrl = (buttonOverlay.parentNode).children[1].src;
     console.log(mealImageUrl);
-    var mealName = buttonDiv.children[2].innerHTML;
-    var mealPrice = buttonDiv.children[3].innerHTML;
+    const mealName = buttonDiv.children[0].innerHTML;
+    const mealPrice = buttonDiv.children[1].innerHTML;
 
-    this.onclick = function (){
-        var newImageDiv = document.createElement('div');
+    this.onclick = () => {
+        const newImageDiv = document.createElement('div');
         newImageDiv.classList.add('menuImage');
-        var newDetailsDiv = document.createElement('div');
+        const newDetailsDiv = document.createElement('div');
         newDetailsDiv.classList.add('menuDetails');
-        var newMenuItemName = document.createElement('h2');
-        var newMenuItemPrice = document.createElement('h6');
-        var newMenu = document.createElement('div');
+        const newMenuItemName = document.createElement('h2');
+        const newMenuItemPrice = document.createElement('h6');
+        const newMenu = document.createElement('div');
         newMenu.classList.add('menu-box');
 
         newImageDiv.style.backgroundImage = `url(${mealImageUrl})`;

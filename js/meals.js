@@ -1,28 +1,28 @@
-var removeClassElements = document.getElementsByClassName('delete');
+const removeClassElements = document.getElementsByClassName('delete');
 
-for(var i = 0; i < removeClassElements.length; i++){
-  var element = removeClassElements[i];  
+for(let i = 0; i < removeClassElements.length; i++){
+  const element = removeClassElements[i];  
   element.addEventListener('click', remove);
 }
 
-var editClassElements = document.getElementsByClassName('edit');
+const editClassElements = document.getElementsByClassName('edit');
 
-for(var i = 0; i < editClassElements.length; i++){
-  var element = editClassElements[i];  
+for(let i = 0; i < editClassElements.length; i++){
+  const element = editClassElements[i];  
   element.addEventListener('click', edit);
 }
 
-var addClassElements = document.getElementsByClassName('add');
+const addClassElements = document.getElementsByClassName('add');
 
-for(var i = 0; i < addClassElements.length; i++){
-  var element = addClassElements[i];  
+for(let i = 0; i < addClassElements.length; i++){
+  const element = addClassElements[i];  
   element.addEventListener('click', add);
 }
 
 function add() {
-  var addModalBox = document.getElementById('addModal');
-  var addBtn = this;
-  var closeBtn = document.getElementsByClassName("close")[0];
+  const addModalBox = document.getElementById('addModal');
+  const addBtn = this;
+  const closeBtn = document.getElementsByClassName("close")[0];
 
   addBtn.onclick = function() {
     addModalBox.style.display = "block";
@@ -39,36 +39,43 @@ function add() {
   }
 }
 
-var modalAddButton = document.getElementById('submitNewButton');
+const modalAddButton = document.getElementById('submitNewButton');
 modalAddButton.addEventListener('click', createMeal);
 
 function createMeal(){
-  var addModalBoxClose = document.getElementById('addModal');
-  var form = document.getElementById('addMealForm');
+  const addModalBoxClose = document.getElementById('addModal');
+  const form = document.getElementById('addMealForm');
 
-  var mealImgUrl = document.getElementById('mealImgUrl').value;
-  var mealName = document.getElementById('mealName').value;
-  var mealPrice = document.getElementById('mealPrice').value;
-  var newMealDiv = document.createElement('div');
+  const mealImgUrl = document.getElementById('mealImgUrl').value;
+  const mealName = document.getElementById('mealName').value;
+  const mealPrice = document.getElementById('mealPrice').value;
+  const newMealDiv = document.createElement('div');
   newMealDiv.classList.add('meal-box');
-  var newAddIcon = document.createElement('i');
+  const newAddIcon = document.createElement('i');
   newAddIcon.classList.add('fa', 'fa-plus', 'add');
-  var newEditIcon = document.createElement('i');
-  newEditIcon.classList.add('fa', 'fa-align-center', 'edit');
-  var newDeleteIcon = document.createElement('i');
+  newAddIcon.addEventListener('click', add);
+  const newEditIcon = document.createElement('i');
+  newEditIcon.classList.add('fas', 'fa-pen', 'edit');
+  newEditIcon.addEventListener('click', edit);
+  const newDeleteIcon = document.createElement('i');
   newDeleteIcon.classList.add('fa', 'fa-trash', 'delete');
-  var newMealImg = document.createElement('img');
+  newDeleteIcon.addEventListener('click', remove);
+  const newMealImg = document.createElement('img');
   newMealImg.src = mealImgUrl;
-  var newMealName = document.createElement('h2');
+  const newMealDetails = document.createElement('div');
+  newMealDetails.id = 'meal-details';
+  const newMealName = document.createElement('h2');
   newMealName.innerHTML = mealName; 
-  var newMealPrice = document.createElement('h6');
+  const newMealPrice = document.createElement('h6');
   newMealPrice.innerHTML = mealPrice;
+  newMealDetails.appendChild(newMealName);
+  newMealDetails.appendChild(newMealPrice);
   newMealDiv.appendChild(newDeleteIcon);
   newMealDiv.appendChild(newEditIcon);
   newMealDiv.appendChild(newAddIcon);
   newMealDiv.appendChild(newMealImg);
-  newMealDiv.appendChild(newMealName);
-  newMealDiv.appendChild(newMealPrice);
+  newMealDiv.appendChild(newMealDetails);
+
   wrapper = document.getElementById('meal-box-container');
   wrapper.appendChild(newMealDiv);
   addModalBoxClose.style.display = "none";
@@ -76,9 +83,9 @@ function createMeal(){
 }
 
 function remove() {
-  var li = this.parentNode;
-  var ul = li.parentNode;  
-  var result = confirm('Are you sure you want to delete this item?');
+  const li = this.parentNode;
+  const ul = li.parentNode;  
+  const result = confirm('Are you sure you want to delete this item?');
   if(result){  
   ul.removeChild(li);
   } else return;
@@ -86,9 +93,9 @@ function remove() {
 }
 
 function edit() {
-  var li = this.parentNode;
-  var span = li.children[4];
-  var price = li.children[5];
+  const li = this.parentNode;
+  const span = (li.children[4]).children[0];
+  const price = (li.children[4]).children[1];
   span.setAttribute('contenteditable', true);
   price.setAttribute('contenteditable', true);
   span.focus();

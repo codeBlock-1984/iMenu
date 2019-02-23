@@ -1,38 +1,43 @@
-var addToOrderElements = document.getElementsByClassName('addToOrder');
+const addToOrderElements = document.getElementsByClassName('addToOrder');
 
-for(var i = 0; i < addToOrderElements.length; i++){
-  var element = addToOrderElements[i];  
+for(let i = 0; i < addToOrderElements.length; i++){
+  const element = addToOrderElements[i];  
   element.addEventListener('click', addToOrder);
 }
-var itemIndex = 0;
-var totalBill = 0;
+let itemIndex = 0;
+let totalBill = 0;
 
 function addToOrder(){
     itemIndex++;
-    var addToOrder = this;
-    var buttonOverlay = this.parentNode;
+    const addToOrder = this;
+    const buttonOverlay = this.parentNode;
     //console.log(buttonOverlay);
-    var buttonDiv = buttonOverlay.parentNode;
-    var orderTable = document.getElementById('order-table');
+    const buttonDiv = (buttonOverlay.parentNode).children[2];
+    const orderTable = document.getElementById('order-table');
+    console.log(buttonDiv);
+    console.log(buttonOverlay);
 
-    var newItemNo = itemIndex;
-    var newItemName = buttonDiv.children[2].innerHTML;
-    var newItemPrice = buttonDiv.children[3].innerHTML;
-    var numberCell = document.createElement('td');
+    const newItemNo = '';
+    const newItemName = buttonDiv.children[0].innerHTML;
+    const newItemPrice = (buttonDiv.children[1].innerHTML).slice(1);
+    const numberCell = document.createElement('td');
+
     numberCell.innerHTML = newItemNo;
-    var nameCell = document.createElement('td');
+    const nameCell = document.createElement('td');
+    nameCell.classList.add('name-cell');
     nameCell.innerHTML = newItemName;
-    var priceCell = document.createElement('td');
+    const priceCell = document.createElement('td');
     priceCell.innerHTML = newItemPrice;
 
-    totalBill += parseInt(newItemPrice.slice(1));
-    var delBtnCell = document.createElement('td');
-    var delIcon = document.createElement('i');
+    totalBill += parseInt(newItemPrice);
+    const delBtnCell = document.createElement('td');
+    const delIcon = document.createElement('i');
     delIcon.classList.add('fas', 'fa-trash-alt', 'deleteOrderItem');
+    delIcon.addEventListener('click', deleteOrderItem);
     delBtnCell.appendChild(delIcon);
-    var newRow = document.createElement('tr');
-    newRow.appendChild(numberCell);
+    const newRow = document.createElement('tr');
     newRow.appendChild(nameCell);
+    newRow.appendChild(numberCell);
     newRow.appendChild(priceCell);
     newRow.appendChild(delBtnCell);
     orderTable.appendChild(newRow);
@@ -41,27 +46,47 @@ function addToOrder(){
 
 }
 
-var deleteButtons = document.getElementsByClassName('deleteOrderItem');
+const deleteButtons = document.getElementsByClassName('deleteOrderItem');
 
-for(var i = 0; i < deleteButtons.length; i++){
-  var element = deleteButtons[i];  
+for(let i = 0; i < deleteButtons.length; i++){
+  const element = deleteButtons[i];  
   element.addEventListener('click', deleteOrderItem);
 }
 
 function deleteOrderItem(){
-  var iconCell = this.parentNode; 
-  var iconRow = iconCell.parentNode;
-  var tableDel = iconRow.parentNode; 
-  var result = confirm('Are you sure you want to remove this item?');
+  const iconCell = this.parentNode; 
+  const iconRow = iconCell.parentNode;
+  const tableDel = iconRow.parentNode; 
+  const result = confirm('Are you sure you want to remove this item?');
   if(result){  
   tableDel.removeChild(iconRow);
   } else return;
     
 }
-var CancelOrderButton = document.getElementById('cancelOrder');
+const CancelOrderButton = document.getElementById('cancelOrder');
   CancelOrderButton.addEventListener('click', cancelOrder);
 function cancelOrder(){
-  var orderTable = document.getElementById('order-table');
+  const orderTable = document.getElementById('order-table');
   orderTable.innerHTML = '';
+  totalBill = 0;
+  document.getElementById('total-cell').innerHTML = '#00.00';
 }
 
+function checkMeal(meal) {
+  mealNames = [...( document.getElementsByClassName('name-cell'))];
+  console.log(mealNames);
+  let mealFound = mealNames.find((mealname) => mealname == meal);
+  let mealFoundIndex = mealNames.findIndex((mealname) => mealname === meal);
+  let checkResult = {found: false, index: null};
+  if(mealFound) {
+    checkResult.found = true;
+    checkResult.index = mealFoundIndex;
+    return checkResult;
+  }
+  else {
+    checkResult.found = false;
+    checkResult.index = mealFoundIndex;
+    return checkResult
+  }
+
+}
