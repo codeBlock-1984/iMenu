@@ -1,18 +1,12 @@
-import { validationResult } from 'express-validator/check';
+import Validate from '../middlewares/validate';
 import menus from '../models/menus';
 
 const menusData = menus;
+const { validate } = Validate;
 
 class menusService {
   static setMenu(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     req.body.menuID = menusData.length + 1;
     const newMenu = req.body;
@@ -24,14 +18,7 @@ class menusService {
   }
 
   static getMenu(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const menuDate = req.params.date;
     console.log(menuDate);

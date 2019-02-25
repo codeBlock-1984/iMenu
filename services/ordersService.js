@@ -1,18 +1,12 @@
-import { validationResult } from 'express-validator/check';
+import Validate from '../middlewares/validate';
 import orders from '../models/orders';
 
 const ordersData = orders;
+const { validate } = Validate;
 
 class ordersService {
   static placeOrder(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const orderID = ordersData.length + 1;
     req.body.orderID = orderID;
@@ -25,14 +19,7 @@ class ordersService {
   }
 
   static getOrdersDay(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const orderDate = req.params.date;
     const ordersDay = ordersData.filter(order => order.orderDate === orderDate);
@@ -50,14 +37,7 @@ class ordersService {
   }
 
   static modifyOrder(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const orderID = parseInt(req.params.id, 10);
     const orderModified = ordersData.find(order => order.orderID === orderID);
@@ -104,14 +84,7 @@ class ordersService {
   }
 
   static cancelOrder(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const orderID = parseInt(req.params.id, 10);
     const deletedOrder = ordersData.find(order => order.orderID === orderID);
