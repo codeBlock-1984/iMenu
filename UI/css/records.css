@@ -1,9 +1,18 @@
+table, th, td {
+    border: 0px solid black;
+    border-collapse: collapse;
+    font-size: 12px;
+    padding: 10px;
+  }
 .main-jumbo-box table{
     width: 90%;
     margin: 20px auto;
 }
 .main-jumbo-box table th{
     text-align: center;
+    background: #bb1010;
+    color: #ffffff;
+    font-size: 14px !important;
 }
 .main-jumbo-box table th:nth-child(2), .main-jumbo-box table th:nth-child(3), .main-jumbo-box table th:nth-child(6){
     width: 120px;
@@ -20,27 +29,28 @@
 .main-jumbo-box table td:nth-child(1), .main-jumbo-box table td:nth-child(2), .main-jumbo-box table td:nth-child(3), .main-jumbo-box table td:nth-child(5), .main-jumbo-box table td:nth-child(6){
     text-align: center;
 }
-.main-jumbo-box table tr:nth-child(even) {
-    background-color: #ff650c17;
+.main-jumbo-box table tr:nth-child(odd) {
+    background-color: #bb101005;
 }
 .main-jumbo-box table tr:nth-child(1) {
-    line-height: 35px;
+    line-height: 30px;
+    font-size: 12px;
     padding: 10px;
-    background: #531300;
-    color: #ffffff;
-    border-bottom: 5px !important;
+    background: #f1f1f1;
+    border-bottom: 0px !important;
 }
 .main-jumbo-box table tr{
     line-height: 25px;
+    margin: 0 !important;
 }
 .main-jumbo-box table tfoot tr{
     background: #ffffff !important;
     color: #000000 !important;
-    border-top: solid 1px #531300 !important;
+    border-top: solid 1px #bb101010 !important;
 }
 .main-jumbo-box table caption {
     font-size: 20px;
-    color: #531300;
+    color: #bb1010;
     padding-bottom: 10px;
     text-align: left;
 }
