@@ -6,6 +6,27 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
+const newDate = new Date();
+const thisDay = newDate.toISOString().slice(0, 10);
+const menu = {
+  menuID: 2,
+  menuDate: thisDay,
+  menuOptions: [
+    {
+      mealName: 'CoconutRice',
+      mealPrice: 780,
+    },
+    {
+      mealName: 'OkraStew',
+      mealPrice: 1670,
+    },
+    {
+      mealName: 'YamFishSauce',
+      mealPrice: 1600,
+    },
+  ],
+};
+
 describe("Menus", () => {
   describe("GET /menus", () => {
     it("should get all menus", (done) => {
@@ -41,30 +62,20 @@ describe("Menus", () => {
         done();
       });
     });
+    it("should not get a single menu if validation fails", (done) => {
+      const invalidDate = '02-11-2019';
+      chai.request(app).get(`/api/v1/menus/${invalidDate}`).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        done();
+      });
+    });
   });
 
   describe("POST /menus", () => {
     it("should post a menu with all required fields", (done) => {
-      const newDate = new Date();
-      const thisDay = newDate.toISOString().slice(0, 10);
-      const menu = {
-        menuID: 2,
-        menuDate: thisDay,
-        menuOptions: [
-          {
-            mealName: 'CoconutRice',
-            mealPrice: 780,
-          },
-          {
-            mealName: 'OkraStew',
-            mealPrice: 1670,
-          },
-          {
-            mealName: 'YamFishSauce',
-            mealPrice: 1600,
-          },
-        ],
-      };
       chai.request(app).post('/api/v1/menus').set('Accept', 'application/x-www-form-urlencoded').send(menu)
         .end((err, res) => {
           res.should.have.status(200);
@@ -73,6 +84,17 @@ describe("Menus", () => {
           res.body.data.should.be.an('array');
           done();
         });
+    });
+    it("should not post a menu if validation fails", (done) => {
+      const invalidMenu = { ...menu };
+      invalidMenu.menuDate = '2019-2-19';
+      chai.request(app).post('/api/v1/menus').send(invalidMenu).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        done();
+      });
     });
   });
 });

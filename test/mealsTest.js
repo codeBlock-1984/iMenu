@@ -45,6 +45,16 @@ describe("Meals", () => {
         done();
       });
     });
+    it("should not get a single meal if validation fails", (done) => {
+      const invalidId = '02';
+      chai.request(app).get(`/api/v1/meals/${invalidId}`).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('ID must be a valid integer value!');
+        done();
+      });
+    });
   });
 
   describe("POST /meals", () => {
@@ -82,6 +92,29 @@ describe("Meals", () => {
         done();
       });
     });
+    it("should not modify a meal if validation fails", (done) => {
+      const invalidMeal = { ...meal };
+      invalidMeal.mealName = 'Turkey & Rice';
+      chai.request(app).put(`/api/v1/meals/${id}`).send(invalidMeal).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Meal name must be alphabet letters!');
+        done();
+      });
+    });
+    it("should not modify a meal if id is not found", (done) => {
+      const invalidMeal = { ...meal };
+      invalidMeal.mealID = 9;
+      const noId = 9;
+      chai.request(app).put(`/api/v1/meals/${noId}`).send(invalidMeal).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Meal with specified ID not found!');
+        done();
+      });
+    });
   });
   describe("DELETE /meals/:id", () => {
     it("should delete a meal", (done) => {
@@ -90,6 +123,26 @@ describe("Meals", () => {
         res.body.should.be.a('object');
         res.body.should.have.property('data');
         res.body.data.should.be.an('array').with.lengthOf(1);
+        done();
+      });
+    });
+    it("should not delete a meal if validation fails", (done) => {
+      const invalidId = '02';
+      chai.request(app).delete(`/api/v1/meals/${invalidId}`).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('ID must be a valid integer value!');
+        done();
+      });
+    });
+    it("should not delete a meal if id is not found", (done) => {
+      const noId = 9;
+      chai.request(app).delete(`/api/v1/meals/${noId}`).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Meal with specified ID not found!');
         done();
       });
     });
