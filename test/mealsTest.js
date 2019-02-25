@@ -58,6 +58,17 @@ describe("Meals", () => {
           done();
         });
     });
+    it("should not post a meal if validation fails", (done) => {
+      const invalidMeal = { ...meal };
+      invalidMeal.mealName = 'Rice & Stew';
+      chai.request(app).post('/api/v1/meals').send(invalidMeal).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Meal name must be alphabet letters!');
+        done();
+      });
+    });
   });
   describe("PUT /meals", () => {
     it("should modify a meal", (done) => {
