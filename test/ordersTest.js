@@ -60,6 +60,16 @@ describe("Orders", () => {
         done();
       });
     });
+    it("should not get orders if validation fails", (done) => {
+      const invalidDate = '2019-2-19';
+      chai.request(app).get(`/api/v1/orders/${invalidDate}`).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        done();
+      });
+    });
   });
 
   describe("POST /orders", () => {
@@ -77,6 +87,17 @@ describe("Orders", () => {
           res.body.data.should.be.an('object');
           done();
         });
+    });
+    it("should not post an order if validation fails", (done) => {
+      const invalidOrder = { ...order };
+      invalidOrder.orderDate = '2019-2-19';
+      chai.request(app).post('/api/v1/orders').send(invalidOrder).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        done();
+      });
     });
   });
   describe("PUT /orders", () => {
@@ -96,6 +117,26 @@ describe("Orders", () => {
         done();
       });
     });
+    it("should not modify an order if id is not found", (done) => {
+      const noId = 9;
+      chai.request(app).put(`/api/v1/orders/${noId}`).send(order).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('error').eql(`Order with id: ${noId} does not exist!`);
+        done();
+      });
+    });
+    it("should not modify an order if validation fails", (done) => {
+      const invalidOrder = { ...order };
+      invalidOrder.orderDate = '2019-2-19';
+      const newId = 2;
+      chai.request(app).put(`/api/v1/orders/${newId}`).send(invalidOrder).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        done();
+      });
+    });
   });
   describe("DELETE /orders/:id", () => {
     it("should delete an order", (done) => {
@@ -106,6 +147,24 @@ describe("Orders", () => {
         res.body.should.be.an('object');
         res.body.should.have.property('data');
         res.body.data.should.be.an('object');
+        done();
+      });
+    });
+    it("should not delete an order if id is not found", (done) => {
+      const noId = 9;
+      chai.request(app).delete(`/api/v1/orders/${noId}`).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('error').eql(`Order with ID: ${noId} does not exist!`);
+        done();
+      });
+    });
+    it("should not delete an order if validation fails", (done) => {
+      const invalidId = '02';
+      chai.request(app).delete(`/api/v1/orders/${invalidId}`).end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('error').eql('ID parameter must be a valid integer value!');
         done();
       });
     });

@@ -89,9 +89,6 @@ class ordersService {
   static getOrder(req, res) {
     const orderID = parseInt(req.params.id, 10);
     const singleOrder = ordersData.find(order => order.orderID === orderID);
-    console.log(req.params.id);
-    console.log(orderID);
-    console.log(singleOrder);
 
     if (singleOrder) {
       console.log(`This is ${singleOrder}`);

@@ -37,8 +37,8 @@ class mealsService {
     const singleMeal = mealsData.find(meal => meal.mealID === mealID);
 
     if (singleMeal) {
-      if (newMeal.mealName) singleMeal.mealName = newMeal.mealName;
-      if (newMeal.mealPrice) singleMeal.mealPrice = newMeal.mealPrice;
+      singleMeal.mealName = newMeal.mealName;
+      singleMeal.mealPrice = newMeal.mealPrice;
       return res.status(200).json({
         status: 200,
         data: singleMeal,
