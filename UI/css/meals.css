@@ -7,11 +7,11 @@ body{
   margin:0; 
   display:flex; 
   flex-direction:column;
-  background: #531300 !important; 
+  background: #bb1010 !important; 
 }
 header{
   height:80px;
-  background: #531300;
+  background: #bb1010;
 }
 .main-header{
   color: #ffffff;
@@ -43,17 +43,17 @@ div.main-inner-wrapper{
 .main-nav{
   width:100%;
   margin: 0;
-  height: 100px;
-  background: #f1f1f1;
-  -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
-          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5);
+  height: 80px;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0);
   
 }
 .icon-bar {
   margin: 0 auto;
   width: 480px;
-  height: 80px;
-  padding-top: 10px;
+  height: 60px;
+  padding-top: 0px;
 }
 
 .icon-box {
@@ -64,15 +64,15 @@ div.main-inner-wrapper{
 }
 .icon-bar a{
   text-decoration: none;
-  color: #531300;
+  color: #bb1010;
   cursor: pointer;
 }
-.icon-bar a:hover, .icon-box:active{
+.icon-bar i:hover, a:hover, .icon-box:active{
   color: #ff670c !important;
 }
 .icon-box i{
   font-size: 30px;
-  color: #531300;
+  color: #bb1010;
   text-align: center;
   margin: auto;
   width: 80px;
@@ -80,11 +80,13 @@ div.main-inner-wrapper{
 .icon-box span {
   display:block;
   text-align: center;
-  font-size: 18px;
-  font-weight: 700;
-  color: #531300;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  color: #bb1010;
 }
 .main-inner-box{
+  position: relative;
   width: 90%;
   margin: auto;
   padding-top: 40px;
@@ -93,25 +95,36 @@ div.main-inner-wrapper{
   flex-direction: row;
   flex-wrap: wrap;
 }
+h1#meal-title{
+  position: absolute;
+  top: 5px;
+  margin-left: 30px;
+  font-size: 15px;
+  font-weight: bolder;
+  color: #bb1010;
+}
 .meal-box{
   width: 150px;
-  height: 200px;
+  height: 185px;
   margin: 20px;
-  -webkit-box-shadow: 0px 0px 7px 0px rgba(255,103, 12, 0.5);
-          box-shadow: 0px 0px 7px 0px rgba(255, 103, 12, 0.5);
-  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 7px 0px #531300;
+          box-shadow: 0px 0px 7px 0px #531300;
+  border-radius: 20px;
 }
 .meal-box i{
   font-size: 10px;
   float: right;
   margin: 4px 1px;
   padding: 5px;
-  color: #eeeeee;
+  color: #bb101026;
   
 }
+.meal-box i:nth-child(1){
+  margin-right: 10px;
+}
 .meal-box i:hover{
-  font-size: 11px;
-  color: #531300;
+  font-size: 10px;
+  color: #ff670c;
 }
 .meal-box img{
   width: 125px;
@@ -119,26 +132,30 @@ div.main-inner-wrapper{
   margin: auto;
   padding-left: 25px;
 }
+div#meal-details{
+  height: 48px;
+  background: #bb1010;
+  color: #ffffff;
+  border-radius: 0 0 20px 20px;
+}
 .meal-box h2, h6{
   margin: 5px 0;
   text-align: center;
 }
 .meal-box h2{
   border-top: solid #ff650c10 1px;
-  color: #531300;
   font-size: 12px;
   font-weight: 800;
   padding-top: 5px;
 }
 .meal-box h6{
-  color: #531300;
   font-size: 12px;
   font-weight: 800;
 }
 footer{
   height:50px;
   margin-top:auto; 
-  background: #531300;
+  background: #bb1010;
 }
 .footer-bar{
   width: 200px;
@@ -167,7 +184,7 @@ footer{
 
 .add-box {
   background-color: #ffffff;
-  color: #531300;
+  color: #000000;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
@@ -176,7 +193,7 @@ footer{
 }
 
 .close {
-  color: #531300;
+  color: #bb1010;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -205,7 +222,7 @@ input[type=text],[type=password] {
   margin-top:15px;
   font-size:15px;
   color: #444444;
-  border: solid 1px #531300;
+  border: solid 1px #bb1010;
   border-radius: 5px;
 }
 input::placeholder{
@@ -217,9 +234,9 @@ input:focus {
   box-shadow: 0 0 10px #ff670c;
 }
 input[type=button] {
-  background:linear-gradient(to bottom,#531300 5%,#531300 100%);
-  box-shadow: 0 0 0 #531300;
-  border:1px solid #531300;
+  background:linear-gradient(to bottom,#bb1010 5%,#bb1010 100%);
+  box-shadow: 0 0 0 #bb1010;
+  border:1px solid #bb1010;
   color:#fff;
   width:306px;
   height:60px;

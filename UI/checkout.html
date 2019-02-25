@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simple, and easy to use. An app to make your meal booking experience awesome.">
+  <meta name="keywords" content="Meal-booking, online menu, meal, orders">
+  <!-- My title goes here -->
+  <title>iMenu - Your Online Meal Booking App</title>
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="css/checkout.css">
+  
+  <link rel="stylesheet" href="css/menus.css">
+  <link rel="stylesheet" href="css/meals.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+
+<body>
+  <header class="main-header">
+    <h1>iMenu</h1>
+    <a href="login.html"><span>Log out</span></a>
+
+  </header>
+  
+  <div class="main-inner-wrapper bg-red">
+    <nav class="main-nav">
+      <div class="icon-bar">
+        <div class="icon-box"><a href="records.html"><i id="record-icon" class="fas fa-file-invoice-dollar"></i><span>Records</span></a></div> 
+        <div class="icon-box"><a href="menus.html"><i id="menu-icon" class="fab fa-elementor"></i><span>Menus</span></a></div> 
+        <div class="icon-box"><a href="meals.html"><i id="meal-icon" class="fas fa-hamburger"></i><span>Meals</span></a></div>
+        <div class="icon-box"><a href="orders.html"><i id="order-icon" class="fas fa-utensils"></i><span>Orders</span></a></div>
+      </div>  
+    </nav>
+    
+    <div id="checkout-main-container" class="main-jumbo-box">
+      <div id="summary-box">
+        <table>
+            <caption>Order Summary</caption>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Rice & Dodo</td>
+                    <td>#780</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Bean Porridge</td>
+                    <td>#1200</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Fish & Chips</td>
+                    <td>#900</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Egusi & Semo</td>
+                    <td>#1630</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Stewed Turkey</td>
+                    <td>#2800</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Oats and Pastry</td>
+                    <td>#710</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Pizza & Coffee</td>
+                    <td>#590</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Onion Salad</td>
+                    <td>#1400</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>Subtotal</td>
+                    <td>#52000</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Sales tax 5%</td>
+                    <td>#2600</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Total</td>
+                    <td>#54600</td>
+                </tr>
+            </tfoot>
+        </table>
+      </div>
+      <div class="checkout-box">
+          <h1 class="page-title">Delivery Information</h1>
+          <div class="checkout-box-inner">
+                <div id="info">
+                    <label for="City">City</label>
+                    <select name="City" id="city">
+                        <option value="Select City">Select city</option>
+                        <option value="Lagos">Lagos</option>
+                        <option value="Ikeja">Ikeja</option>
+                    </select>
+                    <label for="Area">Area</label>
+                    <select name="Area" id="area">
+                        <option value="Select Area">Select area</option>
+                        <option value="Maryland">Maryland</option>
+                        <option value="Ikoyi">Ikoyi</option>
+                        <option value="Lekki">Lekki</option>
+                    </select>
+                    <label for="Address">Street Address</label>
+                    <textarea name="Address" id="address" cols="80" rows="4"></textarea>
+                    <a id="pay-button" href="payment.html">Checkout</a>
+                </div>
+          </div>
+      </div>
+
+    </div> <!-- End main-jumbo-box-->
+
+  </div> 
+
+  <footer>
+    <div class="footer-bar">
+        <p class="footer-text">Copyright &copy; iMenu 2019</p>
+    </div>
+  </footer>
+  <!-- Custom scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

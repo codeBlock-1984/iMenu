@@ -1,0 +1,25 @@
+div.success-box{
+    width: 500px;
+    height: 300px;
+    margin: 20px auto;
+}
+div.success-box h1{
+    color: #bb1010;
+}
+div.success-box a {
+    display: block;
+    width: 300px;
+    margin: 40px auto;
+    padding: 10px;
+    color: #ffffff;
+    background: #bb1010;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+div.success-box a:hover{
+    display: block;
+    background: #ff670c;
+    color: #ffffff !important;
+}
