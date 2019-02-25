@@ -1,9 +1,9 @@
 .overlay{
     position: absolute;
     width: 150px;
-    height: 182px;
+    height: 167px;
     display: none;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 h1.page-title{
     font-size: 15px !important; 
@@ -14,7 +14,7 @@ h1.page-title{
     background: rgba( 0, 0, 0, 0.5);
 }
 .meal-box{
-    height: 182px !important;
+    height: 167px !important;
 }
 .meal-box img{
     margin-top: 10px !important;
@@ -72,7 +72,7 @@ h1.page-title{
 }
 .menu-box{
     width: 90%;
-    height: 80px;
+    height: 70px;
     padding: 10px 20px;
     margin: 10px auto;
     background: #ffffff;
@@ -105,14 +105,23 @@ h1.page-title{
     height: 100px;
 }
 .menuDetails{
+    position: relative;
     width: 250px;
-    height: 50px;
-    padding-left: 50px;
+    height: 45px;
+    padding-left: 20px;
     border-radius: 5px;
     background: #ffffff;
 }
+.menuDetails i{
+    position: absolute;
+    left: 185px;
+    top: 7px;
+    padding: 8px;
+    background: #bb101015;
+    border-radius: 50%;
+}
 .menuDetails h2{
-    font-size: 15px;
+    font-size: 13px;
     color: #000000;
     margin-top: 5px;
     margin-bottom: 5px;

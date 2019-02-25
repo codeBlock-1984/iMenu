@@ -5,24 +5,29 @@
 
 div#summary-box{
     width: 750px;
-    height: 380px;
+    height: 420px;
     margin: 20px auto 0 auto;
 }
 div#summary-box table{
     width: 90%;
     margin: 20px auto;
     padding: 30px 40px !important;
-    border-top: solid #f1f1f1 10px;
-    border-bottom: solid #f1f1f1 30px;
-    border-left: solid #f1f1f1 40px;
-    border-right: solid #f1f1f1 40px;
-    border-radius: 5px !important;
-    background: #f1f1f1 !important;
+    border-radius: 0px !important;
+    background: #ffffff !important;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0);
+}
+div#summary-box table tbody{
+    border-top: solid #ffffff 40px;
+    border-right: solid #ffffff 40px;
+    border-left: solid #ffffff 40px;
+    border-bottom: solid #bb1010 1px !important;
 }
 div#summary-box table th, td{
     font-size: 13px !important;
     font-weight: bolder !important;
     text-align: left;
+    padding: 5px;
 }
 div#summary-box table tr td:nth-child(1){
     width: 30px !important;
@@ -49,18 +54,21 @@ div#summary-box table tr:last-child {
 div#summary-box table tr{
     line-height: 15px;
 }
-div#summary-box table tfoot tr{
+div#summary-box table tfoot tr td{
     color: #000000 !important;
 }
-div#summary-box table tfoot{
-    border-top: 0 !important;
+div#summary-box table tfoot tr:first-child td{
+    border-top: solid #bb1010 1px !important;
 }
 div#summary-box table caption {
     font-size: 15px;
     font-weight: 900;
     padding: 10px 0 10px 20px;
     text-align: left;
-    background: #ccc;
+    background: #bb1010;
+    color: #ffffff;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0);
 }
 div.checkout-box{
     width: 750px;
@@ -69,40 +77,48 @@ div.checkout-box{
 }
 div.checkout-box h1{
     width: 95%;
-    background: #ccc;
+    color: #ffffff;
+    background: #bb1010;
     margin: 0 auto;
     padding: 10px 0 10px 20px;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0);
 }
 .checkout-box-inner{
     width: 95%;
     margin: 0 auto 20px auto;
     padding-bottom: 10px;
-    background: #f1f1f1;
+    background: #ffffff;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0);
 }
 #info{
     width:95%;
     margin: auto;
-    padding: 50px 50px 30px 60px;
+    padding: 50px 50px 50px 60px;
 }
 label{
     font-size: 12px;
     font-weight: 700;
 }
 #info select{
-    width: 200px;
+    width: 205px;
     height: 30px;
     display: inline-block;
     margin-left: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 12px;
     padding-left: 10px;
-    color: #ccc;
+    border-color: #bb1010 !important;
+    background-color: #ffffff;
 }
 #info select option{
     color: #000000;
 }
 #info select:focus{
     outline: #ff670c;
+    outline-color: #ff670c !important;
+    outline-width: medium;
 }
 #info select>option:checked{
     background: #ff670c;
@@ -116,6 +132,13 @@ label{
 #info textarea{
     display: block;
     width: 520px;
+    border-color: #bb1010;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#info textarea:focus{
+    outline-color: #ff670c !important;
+    outline-width: medium;
 }
 a#pay-button{
     display: block;

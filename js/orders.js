@@ -6,23 +6,30 @@ for(let i = 0; i < addToOrderElements.length; i++){
 }
 let itemIndex = 0;
 let totalBill = 0;
+let mealCount = 0
+const orderTable = document.getElementById('order-table');
 
 function addToOrder(){
+
+    //debugger;
     itemIndex++;
     const addToOrder = this;
     const buttonOverlay = this.parentNode;
     //console.log(buttonOverlay);
     const buttonDiv = (buttonOverlay.parentNode).children[2];
-    const orderTable = document.getElementById('order-table');
     console.log(buttonDiv);
     console.log(buttonOverlay);
 
-    const newItemNo = '';
+    const newItemNo = 1;
     const newItemName = buttonDiv.children[0].innerHTML;
     const newItemPrice = (buttonDiv.children[1].innerHTML).slice(1);
-    const numberCell = document.createElement('td');
+    const numberCell0 = document.createElement('td');
+    const numberCell1 = document.createElement('td');
 
-    numberCell.innerHTML = newItemNo;
+    mealExists = checkMeal(newItemName);
+
+    if(!mealExists.found){
+    numberCell0.innerHTML = newItemNo;
     const nameCell = document.createElement('td');
     nameCell.classList.add('name-cell');
     nameCell.innerHTML = newItemName;
@@ -37,12 +44,26 @@ function addToOrder(){
     delBtnCell.appendChild(delIcon);
     const newRow = document.createElement('tr');
     newRow.appendChild(nameCell);
-    newRow.appendChild(numberCell);
+    newRow.appendChild(numberCell0);
+    newRow.appendChild(numberCell1);
     newRow.appendChild(priceCell);
     newRow.appendChild(delBtnCell);
     orderTable.appendChild(newRow);
 
-    document.getElementById('total-cell').innerHTML = '#' + totalBill;
+    document.getElementById('total-cell').innerHTML = '#' + getTotalBill();
+    } else{
+      debugger;
+      let currentRow = orderTable.children[mealExists.index];
+      count = parseInt(currentRow.children[1].innerHTML);
+      count++;
+      currentRow.children[1].innerHTML = count;
+      currentRow.children[2].innerHTML = count + ' x';
+      currentRow.children[3].innerHTML = parseInt(newItemPrice) + parseInt(currentRow.children[3].innerHTML); 
+      //totalBill += parseInt(currentRow.children[3].innerHTML);
+      document.getElementById('total-cell').innerHTML = '#' + getTotalBill();
+
+    }
+    
 
 }
 
@@ -60,6 +81,7 @@ function deleteOrderItem(){
   const result = confirm('Are you sure you want to remove this item?');
   if(result){  
   tableDel.removeChild(iconRow);
+  document.getElementById('total-cell').innerHTML = '#' + getTotalBill();
   } else return;
     
 }
@@ -73,10 +95,14 @@ function cancelOrder(){
 }
 
 function checkMeal(meal) {
-  mealNames = [...( document.getElementsByClassName('name-cell'))];
+  mealNames = document.getElementsByClassName('name-cell');
+  let arr = [];
+  for(let i=0; i<mealNames.length; i++){
+    arr[i] = mealNames[i].innerHTML;
+  }
   console.log(mealNames);
-  let mealFound = mealNames.find((mealname) => mealname == meal);
-  let mealFoundIndex = mealNames.findIndex((mealname) => mealname === meal);
+  let mealFound = arr.find((mealname) => mealname == meal);
+  let mealFoundIndex = arr.findIndex((mealname) => mealname === meal);
   let checkResult = {found: false, index: null};
   if(mealFound) {
     checkResult.found = true;
@@ -89,4 +115,14 @@ function checkMeal(meal) {
     return checkResult
   }
 
+}
+function getTotalBill () {
+  const len = orderTable.children.length;
+  let arr = [];
+  let totalBill = 0;
+  for(let i=0; i<len; i++){
+    arr[i] = (orderTable.children[i]).children[3].innerHTML;
+    totalBill += parseInt(arr[i]);
+  }
+  return totalBill;
 }

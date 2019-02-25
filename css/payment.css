@@ -6,7 +6,7 @@
 div#contact-box{
     width: 650px;
     margin: 0 auto;
-    padding: 20px 0 0 30px;
+    padding: 20px 0 20px 30px;
 }
 p{
     font-size: 13px !important;
@@ -23,13 +23,15 @@ span.label:hover{
 div.single-bar{
     display: flex;
     flex-direction: row;
-    padding: 10px 0 10px 40px;
-    margin: 0px 20px 0 20px;
+    padding: 20px 0 20px 40px;
+    margin: 0 auto;
     background: #ffffff;
+    border: solid #bb1010 1px;
+    width: 550px;
 }
 div.single-bar input[type="radio"]{
     width: 40px;
-    height: 40px;
+    height: 30px;
 }
 div.single-bar input[type="radio"]:focus{
     box-shadow: unset !important;
@@ -37,11 +39,15 @@ div.single-bar input[type="radio"]:focus{
 div#cash-pay-box{
     display: none;
     position: relative;
-    width: 634px;
+    width: 550px;
     height: 250px;
-    margin: 0 auto;
-    padding: 20px 40px 0 120px;
+    margin: -1px auto;
+    margin-bottom: 30px;
+    padding: 20px 40px 0 80px;
     background: #ffffff;
+    border-right: solid #bb1010 1px;
+    border-left: solid #bb1010 1px;
+    border-bottom: solid #bb1010 1px;
 }
 input[type="tel"]{
     margin-top: 5px;
@@ -59,8 +65,8 @@ img#card-icon{
     width: 50px;
     height: 40px;
     background: #ffffff;
-    top: 47px;
-    right: 127px;
+    top: 43px;
+    right: 81px;
     padding: 2px 8px;
     border: solid 1px #cccccc;
 }
@@ -117,6 +123,7 @@ div.single-bar img{
 }
 .pay-box{
     padding-bottom: 30px !important;
+    padding-top: 20px;
 }
 .pay-box p{
     margin-left: 40px;
