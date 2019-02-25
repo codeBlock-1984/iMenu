@@ -79,8 +79,8 @@ h1.page-title{
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    border: #ff670c solid 1px;
-    border-radius: 5px;
+    border: #bb1010 solid 1px;
+    border-radius: 20px;
     
 }
 #menu-box-container h1{
@@ -119,6 +119,9 @@ h1.page-title{
     padding: 8px;
     background: #bb101015;
     border-radius: 50%;
+}
+.menuDetails i:hover{
+    background: #bb101050;
 }
 .menuDetails h2{
     font-size: 13px;

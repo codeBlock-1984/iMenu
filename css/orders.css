@@ -37,7 +37,7 @@ tr:nth-child(even){
     background: #bb101005;
 }
 tr td:nth-child(4){
-    width: 80px;
+    width: 60px;
 }
 td:nth-child(5){
     padding-right: 6px;
@@ -48,7 +48,7 @@ td{
     padding: 5px 0;
 }
 td:first-child{
-    padding-left: 10px;
+    padding-left: 20px;
 }
 .order-box-container{
     overflow: unset !important;
@@ -89,6 +89,12 @@ td:first-child{
 
 table i{
     font-size: 12px;
+    padding: 8px;
+    background: #bb101015;
+    border-radius: 50%;
+}
+table i:hover{
+    background: #bb101050;
 }
 ul#total-box{
     margin: 0 0 0 150px !important;

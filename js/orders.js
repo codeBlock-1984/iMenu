@@ -11,11 +11,9 @@ const orderTable = document.getElementById('order-table');
 
 function addToOrder(){
 
-    //debugger;
     itemIndex++;
     const addToOrder = this;
     const buttonOverlay = this.parentNode;
-    //console.log(buttonOverlay);
     const buttonDiv = (buttonOverlay.parentNode).children[2];
     console.log(buttonDiv);
     console.log(buttonOverlay);
@@ -52,7 +50,6 @@ function addToOrder(){
 
     document.getElementById('total-cell').innerHTML = '#' + getTotalBill();
     } else{
-      debugger;
       let currentRow = orderTable.children[mealExists.index];
       count = parseInt(currentRow.children[1].innerHTML);
       count++;
