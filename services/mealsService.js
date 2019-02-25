@@ -1,18 +1,13 @@
-import { validationResult } from 'express-validator/check';
 import meals from '../models/meals';
+import Validate from '../middlewares/validate';
 
 const mealsData = meals;
+const { validate } = Validate;
 
 class mealsService {
   static createMeal(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
+
     req.body.mealID = mealsData.length + 1;
     const singleMeal = req.body;
     mealsData.push(singleMeal);
@@ -23,14 +18,7 @@ class mealsService {
   }
 
   static editMeal(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const mealID = parseInt(req.params.id, 10);
     const newMeal = req.body;
@@ -59,14 +47,7 @@ class mealsService {
   }
 
   static getMeal(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const mealID = parseInt(req.params.id, 10);
     const singleMeal = mealsData.find(meal => meal.mealID === mealID);
@@ -84,14 +65,7 @@ class mealsService {
   }
 
   static removeMeal(req, res) {
-    const vError = validationResult(req);
-    if (!vError.isEmpty()) {
-      const errorMsg = vError.array()[0].msg;
-      return res.status(400).json({
-        status: 400,
-        error: errorMsg,
-      });
-    }
+    validate(req, res);
 
     const mealID = parseInt(req.params.id, 10);
     const singleMeal = mealsData.find(meal => meal.mealID === mealID);
