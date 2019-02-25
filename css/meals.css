@@ -44,9 +44,9 @@ div.main-inner-wrapper{
   width:100%;
   margin: 0;
   height: 80px;
-  background: #f1f1f1;
-  -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0, 0.5);
-          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0, 0.5);
+  background: #ffffff;
+  -webkit-box-shadow: 0px 0px 7px 0px rgba(83,19, 0);
+          box-shadow: 0px 0px 7px 0px rgba(83, 19, 0);
   
 }
 .icon-bar {
@@ -105,23 +105,26 @@ h1#meal-title{
 }
 .meal-box{
   width: 150px;
-  height: 200px;
+  height: 185px;
   margin: 20px;
-  -webkit-box-shadow: 0px 0px 7px 0px #ff670c;
-          box-shadow: 0px 0px 7px 0px #ff670c;
-  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 7px 0px #531300;
+          box-shadow: 0px 0px 7px 0px #531300;
+  border-radius: 20px;
 }
 .meal-box i{
   font-size: 10px;
   float: right;
   margin: 4px 1px;
   padding: 5px;
-  color: #eeeeee;
+  color: #bb101026;
   
 }
+.meal-box i:nth-child(1){
+  margin-right: 10px;
+}
 .meal-box i:hover{
-  font-size: 11px;
-  color: #bb1010;
+  font-size: 10px;
+  color: #ff670c;
 }
 .meal-box img{
   width: 125px;
@@ -130,10 +133,10 @@ h1#meal-title{
   padding-left: 25px;
 }
 div#meal-details{
-  height: 63px;
-  background: #ff670c;
+  height: 48px;
+  background: #bb1010;
   color: #ffffff;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 20px 20px;
 }
 .meal-box h2, h6{
   margin: 5px 0;
