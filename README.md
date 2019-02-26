@@ -48,7 +48,7 @@ The UI is hosted on gh-pages
 
 ### API
 The API is hosted on Heroku
-* [iMenu API](https://imenu-app.herokuapp.com/api/v1/)
+* [iMenu API](https://imenu-app.herokuapp.com/)
 
 #### Features
 The following API Endpoints are available for requests:
