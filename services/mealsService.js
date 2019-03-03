@@ -1,5 +1,5 @@
 import meals from '../models/meals';
-import Validate from '../middlewares/validate';
+import Validate from '../helpers/validate';
 
 const mealsData = meals;
 const { validate } = Validate;

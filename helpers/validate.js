@@ -13,6 +13,16 @@ class Validate {
     }
     return undefined;
   }
+
+  static checkExists(itemObj, itemObjProp, prop) {
+    const existingItem = itemObj.find(item => item[prop] === itemObjProp);
+    console.log(existingItem);
+    console.log(itemObj);
+    console.log(itemObjProp);
+    return existingItem;
+    //if (!existingItem) return true;
+    //return false;
+  }
 }
 
 export default Validate;

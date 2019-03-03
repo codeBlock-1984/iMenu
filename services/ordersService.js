@@ -1,4 +1,4 @@
-import Validate from '../middlewares/validate';
+import Validate from '../helpers/validate';
 import orders from '../models/orders';
 
 const ordersData = orders;

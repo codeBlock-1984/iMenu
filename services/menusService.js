@@ -1,4 +1,4 @@
-import Validate from '../middlewares/validate';
+import Validate from '../helpers/validate';
 import menus from '../models/menus';
 
 const menusData = menus;

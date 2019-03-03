@@ -1,7 +1,9 @@
 import { check } from 'express-validator/check';
+import Validate from '../helpers/validate';
 import meals from '../models/meals';
 
 const mealsData = meals;
+const { checkExists } = Validate;
 
 const mealsValidator = {
   mealBodyValidator: [
@@ -31,8 +33,11 @@ const mealsValidator = {
   checkMealExists: [
     check('mealName')
       .custom((mealName) => {
-        const existingMeal = mealsData.find(meal => meal.mealName === mealName);
-        if (!existingMeal) return true;
+        const mealsD = meals;
+        const prop = 'mealName';
+        // console.log(mealsData);
+        const result = checkExists(mealsD, mealName, prop);
+        if (result === true) return true;
         return false;
       })
       .withMessage('Meal already exists!'),
