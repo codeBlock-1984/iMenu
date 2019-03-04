@@ -1,7 +1,10 @@
-import meals from '../models/meals';
+// import meals from '../models/meals';
 import Validate from '../middlewares/validate';
+import db from '../database/models';
 
-const mealsData = meals;
+const { Meal } = db;
+
+const mealsData = Meal;
 const { validate } = Validate;
 
 class mealsService {
@@ -38,6 +41,22 @@ class mealsService {
     });
   }
 
+  static async getMeals(req, res) {
+    try {
+      const allMeals = await mealsData.findAll();
+      return res.status(200).json({
+        status: 200,
+        data: allMeals,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: 'Internal server error!',
+      });
+    }
+  }
+
+  /*
   static getMeals(req, res) {
     const allMeals = mealsData;
     return res.status(200).json({
@@ -45,6 +64,7 @@ class mealsService {
       data: allMeals,
     });
   }
+*/
 
   static getMeal(req, res) {
     validate(req, res);

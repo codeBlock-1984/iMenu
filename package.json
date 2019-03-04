@@ -16,7 +16,10 @@
     "type": "git",
     "url": "git+https://github.com/codeBlock-1984/iMenu.git"
   },
-  "keywords": ["meal-booking", "online menu"],
+  "keywords": [
+    "meal-booking",
+    "online menu"
+  ],
   "author": "Ihemegbulam",
   "license": "ISC",
   "bugs": {
@@ -24,10 +27,16 @@
   },
   "homepage": "https://github.com/codeBlock-1984/iMenu#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "pg": "^7.8.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.43.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

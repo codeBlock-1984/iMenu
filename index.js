@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import cors from 'cors';
 import expressValidator from 'express-validator';
 import mealsRoute from './routes/mealsRoute';
 import menusRoute from './routes/menusRoute';
@@ -10,6 +11,7 @@ const app = express();
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(expressValidator());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
