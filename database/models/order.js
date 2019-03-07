@@ -11,7 +11,7 @@ const order = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {});
-
+  // Order associations
   Order.associate = (models) => {
     Order.belongsTo(models.User, {
       foreignKey: 'userId',
