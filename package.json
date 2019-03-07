@@ -6,10 +6,11 @@
   "scripts": {
     "start": "nodemon --exec babel-node ./index.js",
     "start-test": "NODE_ENV=test nodemon --exec babel-node ./index.js",
-    "test":  "NODE_ENV=test npm run prep-travis && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
+    "test": "NODE_ENV=test npm run prep-travis && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "local-test": "NODE_ENV=test npm run prep-test && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "build": "babel ./ --out-dir dist/ --source-maps",
-    "prep-travis": "NODE_ENV=test sequelize db:migrate && sequelize db:seed:all",
+    "sequelize": "node_modules/.bin/sequelize",
+    "prep-travis": "NODE_ENV=test npm run sequelize db:migrate && npm run sequelize db:seed:all",
     "prep-test": "NODE_ENV=test sequelize db:seed:undo:all && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "migrate-test": "NODE_ENV=test sequelize db:migrate",
     "seed-test": "NODE_ENV=test sequelize db:seed:all",
@@ -46,7 +47,8 @@
     "morgan": "^1.9.1",
     "pg": "^7.8.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.43.0"
+    "sequelize": "^4.43.0",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
