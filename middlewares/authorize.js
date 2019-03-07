@@ -34,15 +34,15 @@ class authorize {
       req.user = verifyToken(token);
       const { isAdmin } = req.user;
       if (!isAdmin) {
-        return res.status(401).json({
-          status: 401,
-          error: 'Unauthorized! Admin access only!',
+        return res.status(403).json({
+          status: 403,
+          error: 'Access denied: Forbidden!',
         });
       }
     } catch (error) {
       return res.status(401).json({
-        status: 401,
-        error: 'Unauthorized! No or invalid token in request header!',
+        status: 403,
+        error: 'Access denied: Forbidden!',
       });
     }
     return next();

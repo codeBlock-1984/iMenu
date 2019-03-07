@@ -6,6 +6,7 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNTUxOTU0NzY2LCJleHAiOjE1NTIwNDExNjZ9.zP9QMdaYL_1I08-4_0ritDmlIDlSsNhY76h1PstHgc8';
 const order = {
   userId: 2,
   bill: 4050,
@@ -14,40 +15,10 @@ const order = {
 describe("Orders", () => {
   describe("GET /orders", () => {
     it("should get all orders", (done) => {
-      chai.request(app).get('/api/v1/orders').end((err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.an('object');
-        // res.body.should.have.property('data');
-        done();
-      });
-    });
-  });
-
-  describe("GET /orders/:date", () => {
-    it("should get orders if date is found", (done) => {
-      const date = new Date('2019-03-05');
-
-      chai.request(app).get(`/api/v1/orders/${date}`).end((err, res) => {
+      chai.request(app).get('/api/v1/orders').set('x-auth-token', token).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.an('object');
-        res.body.should.have.property('data');
-        done();
-      });
-    });
-    it("should not get orders if date is not found", (done) => {
-      const date = '2019-02-30';
-      chai.request(app).get(`/api/v1/orders/${date}`).end((err, res) => {
-        res.should.have.status(500);
-        done();
-      });
-    });
-    it("should not get orders if validation fails", (done) => {
-      const invalidDate = 'tuesdaythefirst';
-      chai.request(app).get(`/api/v1/orders/${invalidDate}`).end((err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.an('object');
-        res.body.should.have.property('status');
-        // res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        // res.body.should.have.property('data');
         done();
       });
     });
@@ -59,7 +30,7 @@ describe("Orders", () => {
       // validOrder.userId = 3;
 
       chai.request(app).post('/api/v1/orders').send(validOrder)
-        .end((err, res) => {
+        .set('x-auth-token', token).end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           res.body.should.have.property('data');
@@ -69,7 +40,7 @@ describe("Orders", () => {
     it("should not post an order if validation fails", (done) => {
       const invalidOrder = { ...order };
       invalidOrder.bill = 'tuesdaytheeight';
-      chai.request(app).post('/api/v1/orders').send(invalidOrder).end((err, res) => {
+      chai.request(app).post('/api/v1/orders').send(invalidOrder).set('x-auth-token', token).end((err, res) => {
         res.should.have.status(500);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
@@ -78,22 +49,56 @@ describe("Orders", () => {
       });
     });
   });
-  describe("PUT /orders", () => {
-    it("should modify an order", (done) => {
-      const id = 5;
 
-      chai.request(app).put(`/api/v1/orders/${id}`).send(order).end((err, res) => {
+  describe("GET /orders/:date", () => {
+    it("should get orders if date is found", (done) => {
+      const newDate = new Date();
+      const date = newDate.toISOString().slice(0, 10);
+
+      chai.request(app).get(`/api/v1/orders/${date}`).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.an('object');
+        res.body.should.have.property('data');
+        done();
+      });
+    });
+    it("should not get orders if date is not found", (done) => {
+      const date = '2019-03-30';
+      chai.request(app).get(`/api/v1/orders/${date}`).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('error').eql('No order records found for the date specified!');
+        done();
+      });
+    });
+    it("should not get orders if validation fails", (done) => {
+      const invalidDate = 'tuesdaythefirst';
+      chai.request(app).get(`/api/v1/orders/${invalidDate}`).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(500);
+        res.body.should.be.an('object');
+        res.body.should.have.property('status');
+        // res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        done();
+      });
+    });
+  });
+
+  describe("PUT /orders", () => {
+    /*
+    it("should modify an order", (done) => {
+      const id = 2;
+
+      chai.request(app).put(`/api/v1/orders/${id}`).send(order).set('x-auth-token', token).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('data');
         done();
       });
-    });
+    }); */
     it("should not modify an order if id is not found", (done) => {
       const noId = 204;
-      chai.request(app).put(`/api/v1/orders/${noId}`).end((err, res) => {
-        res.should.have.status(500);
-        // res.body.should.have.property('error').eql(`Order with id: ${noId} does not exist!`);
+      chai.request(app).put(`/api/v1/orders/${noId}`).send(order).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('error').eql('Order with specified id does not exist!');
         done();
       });
     });
@@ -101,7 +106,7 @@ describe("Orders", () => {
       const invalidOrder = { ...order };
       invalidOrder.bill = '2019-2-19';
       const newId = 2;
-      chai.request(app).put(`/api/v1/orders/${newId}`).send(invalidOrder).end((err, res) => {
+      chai.request(app).put(`/api/v1/orders/${newId}`).send(invalidOrder).set('x-auth-token', token).end((err, res) => {
         res.should.have.status(500);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
@@ -111,25 +116,27 @@ describe("Orders", () => {
     });
   });
   describe("DELETE /orders/:id", () => {
+    /*
     it("should delete an order", (done) => {
-      const id = 6;
+      const id = 3;
 
-      chai.request(app).delete(`/api/v1/orders/${id}`).end((err, res) => {
+      chai.request(app).delete(`/api/v1/orders/${id}`).set('x-auth-token', token).end((err, res) => {
         res.should.have.status(200);
         done();
       });
-    });
+    }); */
     it("should not delete an order if id is not found", (done) => {
       const noId = 1024;
-      chai.request(app).delete(`/api/v1/orders/${noId}`).end((err, res) => {
-        res.should.have.status(500);
+      chai.request(app).delete(`/api/v1/orders/${noId}`).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('error').eql('Order with specified id does not exist!');
         done();
       });
     });
     it("should not delete an order if validation fails", (done) => {
-      const invalidId = '02';
-      chai.request(app).delete(`/api/v1/orders/${invalidId}`).end((err, res) => {
-        res.should.have.status(500);
+      const invalidId = '011';
+      chai.request(app).delete(`/api/v1/orders/${invalidId}`).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(404);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
         done();

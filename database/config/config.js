@@ -12,7 +12,7 @@ module.exports = {
   test: {
     username: 'postgres',
     password: 'postgres',
-    database: 'imenutest',
+    database: 'imenu_test_db',
     host: '127.0.0.1',
     port: 5400,
     dialect: 'postgres',
@@ -22,13 +22,6 @@ module.exports = {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
     host: process.env.POSTGRES_HOST,
-    dialect: 'postgres',
-  },
-  travis: {
-    username: 'admin',
-    password: null,
-    database: 'imenu_travis',
-    host: 'localhost',
     dialect: 'postgres',
   },
 };

@@ -29,6 +29,12 @@ class menusService {
     return Menu.findOne({ where: { menuDate: dateT } })
       .then((menu) => {
         console.log(menu);
+        if (menu == null) {
+          return res.status(404).json({
+            status: 404,
+            error: 'Menu with specified date not found!',
+          });
+        }
 
         return res.status(200).json({
           status: 200,
