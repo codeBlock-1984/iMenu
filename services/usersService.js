@@ -34,6 +34,23 @@ class usersService {
         });
       });
   }
+
+  static removeUser(req, res) {
+    const userID = parseInt(req.params.id, 10);
+    return User.destroy({ where: { id: userID } })
+      .then((user) => {
+        return res.status(200).json({
+          status: 200,
+          data: user,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error,
+        });
+      });
+  }
 }
 
 export default usersService;
