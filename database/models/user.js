@@ -23,16 +23,20 @@ const user = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   }, {});
 
-  /*
   User.associate = (models) => {
     User.hasMany(models.Order, {
-      foreignKey: 'orderId',
+      foreignKey: 'userId',
       as: 'Orders',
     });
   };
-*/
+
   return User;
 };
 export default user;

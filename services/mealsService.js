@@ -1,106 +1,102 @@
-// import meals from '../models/meals';
-import Validate from '../middlewares/validate';
+// import Validate from '../middlewares/validate';
 import db from '../database/models';
 
 const { Meal } = db;
 
-const mealsData = Meal;
-const { validate } = Validate;
+// const { validate } = Validate;
 
 class mealsService {
   static createMeal(req, res) {
-    validate(req, res);
-
-    req.body.mealID = mealsData.length + 1;
     const singleMeal = req.body;
-    mealsData.push(singleMeal);
-    return res.status(200).json({
-      status: 200,
-      data: singleMeal,
-    });
-  }
-
-  static editMeal(req, res) {
-    validate(req, res);
-
-    const mealID = parseInt(req.params.id, 10);
-    const newMeal = req.body;
-    const singleMeal = mealsData.find(meal => meal.mealID === mealID);
-
-    if (singleMeal) {
-      singleMeal.mealName = newMeal.mealName;
-      singleMeal.mealPrice = newMeal.mealPrice;
-      return res.status(200).json({
-        status: 200,
-        data: singleMeal,
+    return Meal.create(singleMeal).then((meal) => {
+      return res.status(201).json({
+        status: 201,
+        data: meal,
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: 'Meal with specified ID not found!',
-    });
-  }
-
-  static async getMeals(req, res) {
-    try {
-      const allMeals = await mealsData.findAll();
-      return res.status(200).json({
-        status: 200,
-        data: allMeals,
-      });
-    } catch (error) {
+    }).catch((error) => {
       return res.status(500).json({
         status: 500,
         error: 'Internal server error!',
       });
-    }
-  }
-
-  /*
-  static getMeals(req, res) {
-    const allMeals = mealsData;
-    return res.status(200).json({
-      status: 200,
-      data: allMeals,
     });
   }
-*/
 
-  static getMeal(req, res) {
-    validate(req, res);
-
+  static editMeal(req, res) {
     const mealID = parseInt(req.params.id, 10);
-    const singleMeal = mealsData.find(meal => meal.mealID === mealID);
+    const { name, price } = req.body;
+    return Meal.update({ name, price }, { where: { id: mealID } })
+      .then((meal) => {
+        if (meal === null || meal === undefined) {
+          return res.status(404).json({
+            status: 404,
+            error: 'Meal with specified ID not found!',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: meal,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error,
+        });
+      });
+  }
 
-    if (singleMeal) {
+  static getMeals(req, res) {
+    return Meal.findAll({ attributes: ['id', 'name', 'price', 'createdAt', 'updatedAt'] }).then((allMeals) => {
       return res.status(200).json({
         status: 200,
-        data: singleMeal,
+        data: allMeals,
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: 'Meal with specified ID not found!',
+    }).catch((error) => {
+      return res.status(500).json({
+        status: 500,
+        error: 'Internal server error!',
+      });
     });
+  }
+
+  static getMeal(req, res) {
+    const mealID = parseInt(req.params.id, 10);
+    return Meal.findOne({ attributes: ['id', 'name', 'price', 'createdAt', 'updatedAt'], where: { id: mealID } })
+      .then((meal) => {
+        if (!meal) {
+          return res.status(404).json({
+            status: 404,
+            error: 'Meal with specified ID not found!',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: meal,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
+      });
   }
 
   static removeMeal(req, res) {
-    validate(req, res);
-
     const mealID = parseInt(req.params.id, 10);
-    const singleMeal = mealsData.find(meal => meal.mealID === mealID);
-
-    if (singleMeal) {
-      const deletedMeal = mealsData.splice(singleMeal, 1);
-      return res.status(200).json({
-        status: 200,
-        data: deletedMeal,
+    return Meal.destroy({ where: { id: mealID } })
+      .then((meal) => {
+        return res.status(200).json({
+          status: 200,
+          data: meal,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: 'Meal with specified ID not found!',
-    });
   }
 }
 

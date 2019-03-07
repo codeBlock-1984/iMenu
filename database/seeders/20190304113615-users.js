@@ -1,7 +1,7 @@
-import endecPassword from '../../utils/endecPassword';
+// const endecPassword = require('../../utils/endecPassword');
 
 const currentDate = new Date();
-const { encryptPassword } = endecPassword;
+// const { encryptPassword } = endecPassword;
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -9,7 +9,7 @@ module.exports = {
       {
         name: 'John Okonkwo',
         email: 'johnokon@example.com',
-        password: encryptPassword('werewolf'),
+        password: 'werewolf',
         phone: '08023439584',
         createdAt: currentDate,
         updatedAt: currentDate,
@@ -17,7 +17,7 @@ module.exports = {
       {
         name: 'Aishat Ibrahim',
         email: 'cutebaby97@example.com',
-        password: encryptPassword('dollarbills'),
+        password: 'dollarbills',
         phone: '08138663849',
         createdAt: currentDate,
         updatedAt: currentDate,
@@ -25,7 +25,7 @@ module.exports = {
       {
         name: 'Lola Wale',
         email: 'lollipops@example.com',
-        password: encryptPassword('sweetestgirl'),
+        password: 'sweetestgirl',
         phone: '08093455502',
         createdAt: currentDate,
         updatedAt: currentDate,

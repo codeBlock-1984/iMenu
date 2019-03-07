@@ -6,19 +6,23 @@ const order = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false,
     },
+    bill: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {});
-  /*
+
   Order.associate = (models) => {
     Order.belongsTo(models.User, {
       foreignKey: 'userId',
       as: 'User',
     });
-    Order.hasMany(models.Meal, {
-      foreignKey: 'mealId',
-      as: 'Meals',
+    Order.belongsToMany(models.Meal, {
+      foreignKey: 'orderId',
+      through: 'OrderDetails',
     });
   };
-  */
+
   return Order;
 };
 export default order;

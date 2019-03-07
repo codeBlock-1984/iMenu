@@ -6,14 +6,15 @@ module.exports = {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DATABASE,
     host: process.env.POSTGRES_HOST,
-    port: 5433,
+    port: 5400,
     dialect: 'postgres',
   },
   test: {
     username: 'postgres',
     password: 'postgres',
-    database: 'imenu_test',
+    database: 'imenutest',
     host: '127.0.0.1',
+    port: 5400,
     dialect: 'postgres',
   },
   production: {

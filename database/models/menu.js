@@ -6,11 +6,15 @@ const menu = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false,
     },
+    menuDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   }, {});
   Menu.associate = (models) => {
-    Menu.hasMany(models.Meal, {
-      foreignKey: 'mealId',
-      as: 'Meals',
+    Menu.belongsToMany(models.Meal, {
+      foreignKey: 'menuId',
+      through: 'MenuDetail',
     });
   };
   return Menu;

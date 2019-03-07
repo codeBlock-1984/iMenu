@@ -16,17 +16,17 @@ const meal = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {});
-  /*  Meal.associate = (models) {
-    Meal.hasMany(models.Menu, {
-      foreignKey: 'menuId',
-      as: 'Menus',
+  Meal.associate = (models) => {
+    Meal.belongsToMany(models.Menu, {
+      foreignKey: 'mealId',
+      through: 'MenuDetail',
     });
-    Meal.hasMany(models.Order, {
-      foreignKey: 'orderId',
-      as: 'Orders',
+    Meal.belongsToMany(models.Order, {
+      foreignKey: 'mealId',
+      through: 'OrderDetail',
     });
   };
-  */
+
   return Meal;
 };
 export default meal;

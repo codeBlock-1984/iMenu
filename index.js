@@ -6,6 +6,8 @@ import expressValidator from 'express-validator';
 import mealsRoute from './routes/mealsRoute';
 import menusRoute from './routes/menusRoute';
 import ordersRoute from './routes/ordersRoute';
+import usersRoute from './routes/usersRoute';
+import loginsRoute from './routes/loginsRoute';
 
 const app = express();
 const host = '0.0.0.0';
@@ -20,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v1/meals', mealsRoute);
 app.use('/api/v1/menus', menusRoute);
 app.use('/api/v1/orders', ordersRoute);
+app.use('/api/v1/users', usersRoute);
+app.use('/api/v1/logins', loginsRoute);
 
 app.get('/', (req, res) => {
   res.statusCode = 200;
