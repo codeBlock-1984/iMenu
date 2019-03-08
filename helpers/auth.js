@@ -6,7 +6,7 @@ const secretKey = process.env.SECRET_KEY;
 
 class auth {
   static createToken(payload) {
-    return jwt.sign(payload, secretKey, { expiresIn: 86400 });
+    return jwt.sign(payload, secretKey);
   }
 
   static verifyToken(token) {
