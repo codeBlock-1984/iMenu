@@ -9,7 +9,7 @@
     "test": "NODE_ENV=test npm run prep-travis && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "local-test": "NODE_ENV=test npm run prep-test && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "build": "babel ./ --out-dir dist/ --source-maps",
-    "sequelize": "node_modules/.bin/sequelize",
+    "sequelize": "./node_modules/.bin/sequelize",
     "prep-travis": "NODE_ENV=test npm run sequelize db:migrate && npm run sequelize db:seed:all",
     "prep-test": "NODE_ENV=test sequelize db:seed:undo:all && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "migrate-test": "NODE_ENV=test sequelize db:migrate",
