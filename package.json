@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node ./index.js",
     "start-test": "NODE_ENV=test nodemon --exec babel-node ./index.js",
-    "test": "sequelize db:migrate && sequelize db:seed:all && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
+    "test": "nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "local-test": "NODE_ENV=test npm run prep-test && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "build": "babel ./ --out-dir dist/ --source-maps",
     "sequelize": "./node_modules/.bin/sequelize",
