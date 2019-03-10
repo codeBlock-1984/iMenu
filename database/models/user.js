@@ -3,8 +3,8 @@ const user = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
       allowNull: false,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -12,8 +12,8 @@ const user = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -25,18 +25,17 @@ const user = (sequelize, DataTypes) => {
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+      default: false,
     },
   }, {});
-
   User.associate = (models) => {
+    // associations can be defined here
     User.hasMany(models.Order, {
       foreignKey: 'userId',
       as: 'Orders',
     });
   };
-
   return User;
 };
+
 export default user;

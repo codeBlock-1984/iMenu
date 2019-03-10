@@ -3,26 +3,27 @@ const order = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
       allowNull: false,
+      primaryKey: true,
     },
-    bill: {
-      type: DataTypes.INTEGER,
+    orderDate: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   }, {});
-  // Order associations
   Order.associate = (models) => {
+    // associations can be defined here
     Order.belongsTo(models.User, {
       foreignKey: 'userId',
-      as: 'User',
+      as: 'Customer',
+      onDelete: 'CASCADE',
     });
     Order.belongsToMany(models.Meal, {
+      through: 'OrderMeals',
       foreignKey: 'orderId',
-      through: 'OrderDetails',
     });
   };
-
   return Order;
 };
+
 export default order;

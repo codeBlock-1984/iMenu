@@ -3,20 +3,23 @@ const menu = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
       allowNull: false,
+      primaryKey: true,
     },
     menuDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
   }, {});
   Menu.associate = (models) => {
+    // associations can be defined here
     Menu.belongsToMany(models.Meal, {
+      through: 'MenuMeals',
       foreignKey: 'menuId',
-      through: 'MenuDetail',
     });
   };
   return Menu;
 };
+
 export default menu;

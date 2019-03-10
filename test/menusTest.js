@@ -59,7 +59,8 @@ describe("Menus", () => {
   describe("POST /menus", () => {
     it("should post a menu with all required fields", (done) => {
       chai.request(app).post('/api/v1/menus').send(menu)
-        .set('x-auth-token', token).end((err, res) => {
+        .set('x-auth-token', token)
+        .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.an('object');
           // res.body.should.have.property('data');
@@ -69,13 +70,14 @@ describe("Menus", () => {
     it("should not post a menu if validation fails", (done) => {
       const invalidMenu = { ...menu };
       invalidMenu.menuDate = 'augustthe eleventh';
-      chai.request(app).post('/api/v1/menus').send(invalidMenu).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.an('object');
-        res.body.should.have.property('status');
-        // res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
-        done();
-      });
+      chai.request(app).post('/api/v1/menus').send(invalidMenu).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(500);
+          res.body.should.be.an('object');
+          res.body.should.have.property('status');
+          // res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+          done();
+        });
     });
   });
 });

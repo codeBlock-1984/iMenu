@@ -30,7 +30,8 @@ describe("Orders", () => {
       // validOrder.userId = 3;
 
       chai.request(app).post('/api/v1/orders').send(validOrder)
-        .set('x-auth-token', token).end((err, res) => {
+        .set('x-auth-token', token)
+        .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           res.body.should.have.property('data');
@@ -40,13 +41,14 @@ describe("Orders", () => {
     it("should not post an order if validation fails", (done) => {
       const invalidOrder = { ...order };
       invalidOrder.bill = 'tuesdaytheeight';
-      chai.request(app).post('/api/v1/orders').send(invalidOrder).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.an('object');
-        res.body.should.have.property('status');
-        // res.body.should.have.property('error').eql('Bill must be a valid integer amount!');
-        done();
-      });
+      chai.request(app).post('/api/v1/orders').send(invalidOrder).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(500);
+          res.body.should.be.an('object');
+          res.body.should.have.property('status');
+          // res.body.should.have.property('error').eql('Bill must be a valid integer amount!');
+          done();
+        });
     });
   });
 
@@ -87,7 +89,8 @@ describe("Orders", () => {
     it("should modify an order", (done) => {
       const id = 2;
 
-      chai.request(app).put(`/api/v1/orders/${id}`).send(order).set('x-auth-token', token).end((err, res) => {
+      chai.request(app).put(`/api/v1/orders/${id}`).send(order).set('x-auth-token', token)
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('data');
@@ -96,23 +99,25 @@ describe("Orders", () => {
     }); */
     it("should not modify an order if id is not found", (done) => {
       const noId = 204;
-      chai.request(app).put(`/api/v1/orders/${noId}`).send(order).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('error').eql('Order with specified id does not exist!');
-        done();
-      });
+      chai.request(app).put(`/api/v1/orders/${noId}`).send(order).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.have.property('error').eql('Order with specified id does not exist!');
+          done();
+        });
     });
     it("should not modify an order if validation fails", (done) => {
       const invalidOrder = { ...order };
       invalidOrder.bill = '2019-2-19';
       const newId = 2;
-      chai.request(app).put(`/api/v1/orders/${newId}`).send(invalidOrder).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.an('object');
-        res.body.should.have.property('status');
-        // res.body.should.have.property('error').eql('Bill must be a valid integer amount!');
-        done();
-      });
+      chai.request(app).put(`/api/v1/orders/${newId}`).send(invalidOrder).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(500);
+          res.body.should.be.an('object');
+          res.body.should.have.property('status');
+          // res.body.should.have.property('error').eql('Bill must be a valid integer amount!');
+          done();
+        });
     });
   });
   describe("DELETE /orders/:id", () => {
@@ -120,7 +125,8 @@ describe("Orders", () => {
     it("should delete an order", (done) => {
       const id = 3;
 
-      chai.request(app).delete(`/api/v1/orders/${id}`).set('x-auth-token', token).end((err, res) => {
+     chai.request(app).delete(`/api/v1/orders/${id}`).set('x-auth-token', token)
+     .end((err, res) => {
         res.should.have.status(200);
         done();
       });

@@ -13,8 +13,8 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false,
+        Unique: true,
       },
       password: {
         type: Sequelize.STRING,
@@ -24,16 +24,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-
-      /*
-      orderId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Orders',
-          key: 'id',
-        },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        default: false,
       },
-      */
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -6,9 +6,10 @@ const { Menu } = db;
 
 class menusService {
   static setMenu(req, res) {
-    // const { mealOptions } = req.body;
-    return Menu.create(req.body)
+    const { menuDate, mealOptions } = req.body;
+    return Menu.create(menuDate)
       .then((menu) => {
+        menu.addMeals(mealOptions);
         return res.status(201).json({
           status: 201,
           data: menu,

@@ -1,25 +1,28 @@
 module.exports = (sequelize, DataTypes) => {
-  const MenuDetail = sequelize.define('MenuDetail', {
-    mealId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE',
-      references: {
-        model: 'Meals',
-        key: 'id',
-      },
-    },
+  const MenuMeal = sequelize.define('MenuMeal', {
     menuId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       onDelete: 'CASCADE',
+      primaryKey: true,
       references: {
         model: 'Menus',
         key: 'id',
       },
     },
+    mealId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      primaryKey: true,
+      references: {
+        model: 'Meals',
+        key: 'id',
+      },
+    },
   }, {});
-  MenuDetail.associate = (models) => {
+  MenuMeal.associate = (models) => {
+    // associations can be defined here
   };
-  return MenuDetail;
+  return MenuMeal;
 };

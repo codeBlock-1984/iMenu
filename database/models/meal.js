@@ -3,8 +3,8 @@ const meal = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
       allowNull: false,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -12,21 +12,25 @@ const meal = (sequelize, DataTypes) => {
       unique: true,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
     },
   }, {});
   Meal.associate = (models) => {
+    // associations can be defined here
     Meal.belongsToMany(models.Menu, {
+      through: 'MenuMeals',
       foreignKey: 'mealId',
-      through: 'MenuDetail',
     });
     Meal.belongsToMany(models.Order, {
+      through: 'OrderMeals',
       foreignKey: 'mealId',
-      through: 'OrderDetail',
     });
   };
-
   return Meal;
 };
+
 export default meal;

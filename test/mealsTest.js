@@ -29,15 +29,16 @@ describe("Meals", () => {
   });
   describe("GET /meals/:id", () => {
     it("should get a single meal if id is found", (done) => {
-      chai.request(app).get(`/api/v1/meals/${id}`).send(meal).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.an('object');
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('id').eql(id);
-        res.body.data.should.have.property('name');
-        res.body.data.should.have.property('price');
-        done();
-      });
+      chai.request(app).get(`/api/v1/meals/${id}`).send(meal).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an('object');
+          res.body.should.have.property('data');
+          res.body.data.should.have.property('id').eql(id);
+          res.body.data.should.have.property('name');
+          res.body.data.should.have.property('price');
+          done();
+        });
     });
     it("should not get a single meal if id is not found", (done) => {
       const delId = 1032;
@@ -50,7 +51,8 @@ describe("Meals", () => {
     /*
     it("should not get a single meal if validation fails", (done) => {
       const invalidId = 'three';
-      chai.request(app).get(`/api/v1/meals/${invalidId}`).set('x-auth-token', token).end((err, res) => {
+      chai.request(app).get(`/api/v1/meals/${invalidId}`).set('x-auth-token', token)
+      .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
@@ -66,7 +68,8 @@ describe("Meals", () => {
       validMeal.name = `${faker.name.firstName()} pudding`;
       validMeal.price = 400;
       chai.request(app).post('/api/v1/meals').send(validMeal)
-        .set('x-auth-token', token).end((err, res) => {
+        .set('x-auth-token', token)
+        .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           res.body.should.have.property('data');
@@ -77,13 +80,14 @@ describe("Meals", () => {
     it("should not post a meal if validation fails", (done) => {
       const invalidMeal = { ...meal };
       invalidMeal.price = "twenty thousand naira";
-      chai.request(app).post('/api/v1/meals').send(invalidMeal).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.an('object');
-        // res.body.should.have.property('status');
-        // res.body.should.have.property('error').eql('Meal name must be a String!');
-        done();
-      });
+      chai.request(app).post('/api/v1/meals').send(invalidMeal).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(500);
+          res.body.should.be.an('object');
+          // res.body.should.have.property('status');
+          // res.body.should.have.property('error').eql('Meal name must be a String!');
+          done();
+        });
     });
   });
   describe("PUT /meals", () => {
@@ -91,7 +95,8 @@ describe("Meals", () => {
     it("should modify a meal", (done) => {
       const modId = 4;
       const modMeal = { name: 'Meatball, price: 5000' };
-      chai.request(app).put(`/api/v1/meals/${modId}`).send(modMeal).set('x-auth-token', token).end((err, res) => {
+      chai.request(app).put(`/api/v1/meals/${modId}`).send(modMeal).set('x-auth-token', token)
+      .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('data');
@@ -102,7 +107,8 @@ describe("Meals", () => {
     it("should not modify a meal if validation fails", (done) => {
       const invalidMeal = { ...meal };
       invalidMeal.name = ;
-      chai.request(app).put(`/api/v1/meals/${id}`).send(invalidMeal).set('x-auth-token', token).end((err, res) => {
+      chai.request(app).put(`/api/v1/meals/${id}`).send(invalidMeal).set('x-auth-token', token)
+      .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
@@ -113,13 +119,14 @@ describe("Meals", () => {
     it("should not modify a meal if id is not found", (done) => {
       const invalidMeal = { ...meal };
       const noId = 1024;
-      chai.request(app).put(`/api/v1/meals/${noId}`).send(invalidMeal).set('x-auth-token', token).end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.an('object');
-        res.body.should.have.property('status');
-        // res.body.should.have.property('error').eql('Meal with specified ID not found!');
-        done();
-      });
+      chai.request(app).put(`/api/v1/meals/${noId}`).send(invalidMeal).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an('object');
+          res.body.should.have.property('status');
+          // res.body.should.have.property('error').eql('Meal with specified ID not found!');
+          done();
+        });
     });
   });
   describe("DELETE /meals/:id", () => {
@@ -136,7 +143,8 @@ describe("Meals", () => {
     /*
     it("should not delete a meal if validation fails", (done) => {
       const invalidId = '02';
-      chai.request(app).delete(`/api/v1/meals/${invalidId}`).set('x-auth-token', token).end((err, res) => {
+      chai.request(app).delete(`/api/v1/meals/${invalidId}`).set('x-auth-token', token)
+      .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
