@@ -15,19 +15,19 @@ module.exports = {
       updatedAt: now,
     },
     {
-      orderId: '2019-03-02',
+      orderDate: '2019-03-02',
       userId: 1,
       createdAt: now,
       updatedAt: now,
     },
     {
-      orderId: '2019-03-03',
+      orderDate: '2019-03-03',
       userId: 1,
       createdAt: now,
       updatedAt: now,
     },
     {
-      orderId: '2019-03-04',
+      orderDate: '2019-03-04',
       userId: 1,
       createdAt: now,
       updatedAt: now,

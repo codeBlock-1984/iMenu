@@ -1,23 +1,22 @@
 language: node_js
+services:
+  - postgresql
 addons:
   postgresql: "11.0"
-apt:
+  apt:
     packages:
-    - postgresql-11
-    - postgresql-client-11
+      - postgresql-11
+      - postgresql-client-11
 env:
   global:
     - NODE_ENV=test
     - SECRET_KEY=traeghiteslozae
-    - PGPORT=5400
-services:
-  - postgresql
 node_js: 
   - "stable"
 cache:
   directories:
     - "node_modules"
 before_script:
-  - psql -c 'CREATE DATABASE imenu_test_db;' -U postgres
+  - psql -c 'CREATE DATABASE imenu_testdb;' -U postgres
 script: npm run test
 after_success: 'npm run coverage'
