@@ -6,7 +6,7 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNTUxOTU0NzY2LCJleHAiOjE1NTIwNDExNjZ9.zP9QMdaYL_1I08-4_0ritDmlIDlSsNhY76h1PstHgc8';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlzQWRtaW4iOnRydWUsImlhdCI6MTU1MjA2MDE0N30.ya_H8PxziHIrixYQIIR9Prqdbc9PRPa1IaWiEJRcCvE';
 const order = {
   userId: 2,
   bill: 4050,
