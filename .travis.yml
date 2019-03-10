@@ -18,7 +18,5 @@ cache:
     - "node_modules"
 before_script:
   - psql -c 'CREATE DATABASE imenu_tdb;' -U postgres
-  - sequelize db:migrate
-  - sequelize db:seed:all
 script: npm run test
 after_success: 'npm run coverage'
