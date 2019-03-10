@@ -5,6 +5,7 @@ env:
   global:
     - NODE_ENV=test
     - SECRET_KEY=traeghiteslozae
+    - PGPORT=5433
 node_js: 
   - "stable"
 cache:
