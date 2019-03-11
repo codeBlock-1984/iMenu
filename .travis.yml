@@ -15,3 +15,4 @@ before_script:
   - psql -c "CREATE USER postgre WITH PASSWORD 'postgres';" -U postgres
 script: npm run test
 after_success: 'npm run coverage'
+after_failure: 'cat /home/travis/.npm/_logs/2019-03-*-debug.log'
