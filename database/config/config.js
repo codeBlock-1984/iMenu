@@ -10,7 +10,7 @@ module.exports = {
     dialect: 'postgres',
   },
   test: {
-    username: 'postgres',
+    username: 'postgre',
     password: 'postgres',
     database: 'imenu_tedb',
     host: '127.0.0.1',
