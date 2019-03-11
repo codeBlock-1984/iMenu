@@ -5,13 +5,13 @@ env:
   global:
     - NODE_ENV=test
     - SECRET_KEY=traeghiteslozae
-    - PGPORT=5433
 node_js: 
   - "stable"
 cache:
   directories:
     - "node_modules"
 before_script:
-  - psql -c 'CREATE DATABASE imenu_testdb;' -U postgres
+  - psql -c 'CREATE DATABASE imenu_tedb;' -U postgres
+  - psql -c "CREATE USER postgres WITH PASSWORD 'postgres';" -U postgres
 script: npm run test
 after_success: 'npm run coverage'

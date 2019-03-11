@@ -12,7 +12,7 @@ module.exports = {
   test: {
     username: 'postgres',
     password: 'postgres',
-    database: 'imenu_test_db',
+    database: 'imenu_tedb',
     host: '127.0.0.1',
     port: 5400,
     dialect: 'postgres',
