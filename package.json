@@ -5,8 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node ./index.js",
-    "test": "nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
+    "start-test": "NODE_ENV=test nodemon --exec babel-node ./index.js",
+    "test": "npm run prep-travis && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
+    "local-test": "NODE_ENV=test npm run prep-test && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "build": "babel ./ --out-dir dist/ --source-maps",
+    "sequelize": "node_modules/.bin/sequelize",
+    "prep-travis": "npm run sequelize db:migrate && npm run sequelize db:seed:all",
+    "prep-test": "NODE_ENV=test sequelize db:seed:undo:all && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "migrate-test": "NODE_ENV=test sequelize db:migrate",
+    "seed-test": "NODE_ENV=test sequelize db:seed:all",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all",
+    "dev-test": "npm run migrate && npm run seed && nyc --reporter=text ./node_modules/.bin/mocha --compilers js:@babel/register ./test/*.js --exit",
     "serve": "node ./dist/index.js",
     "debug": "node --inspect-brk ./dist/index.js",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
@@ -16,7 +26,10 @@
     "type": "git",
     "url": "git+https://github.com/codeBlock-1984/iMenu.git"
   },
-  "keywords": ["meal-booking", "online menu"],
+  "keywords": [
+    "meal-booking",
+    "online menu"
+  ],
   "author": "Ihemegbulam",
   "license": "ISC",
   "bugs": {
@@ -24,15 +37,24 @@
   },
   "homepage": "https://github.com/codeBlock-1984/iMenu#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "morgan": "^1.9.1"
+    "jsonwebtoken": "^8.5.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.8.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.43.0",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
     "chai": "^4.2.0",
@@ -41,6 +63,7 @@
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
+    "faker": "^4.1.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.10",
     "nyc": "^13.3.0"

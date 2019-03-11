@@ -3,6 +3,7 @@ dist/
 .nyc_output
 coverage/
 .coveralls.yml
+.dotenv
 
 # Logs
 logs

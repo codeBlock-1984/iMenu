@@ -1,105 +1,129 @@
-import Validate from '../middlewares/validate';
-import orders from '../models/orders';
+// import Sequelize from 'sequelize';
+import db from '../database/models';
 
-const ordersData = orders;
-const { validate } = Validate;
+const Sequelize = require('sequelize');
+
+const { Order } = db;
 
 class ordersService {
   static placeOrder(req, res) {
-    validate(req, res);
-
-    const orderID = ordersData.length + 1;
-    req.body.orderID = orderID;
-    const newOrder = req.body;
-    ordersData.push(newOrder);
-    return res.status(200).json({
-      status: 200,
-      data: newOrder,
-    });
+    return Order.create(req.body)
+      .then((order) => {
+        return res.status(201).json({
+          status: 201,
+          data: order,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
+      });
   }
 
   static getOrdersDay(req, res) {
-    validate(req, res);
-
     const orderDate = req.params.date;
-    const ordersDay = ordersData.filter(order => order.orderDate === orderDate);
-
-    if (!(ordersDay.length === 0)) {
-      return res.status(200).json({
-        status: 200,
-        data: ordersDay,
+    return Order.findAll({ where: Sequelize.where(Sequelize.fn('date_trunc', 'day', Sequelize.col('createdAt')), '=', orderDate) })
+      .then((order) => {
+        console.log(order);
+        if (order.length === 0) {
+          return res.status(404).json({
+            status: 404,
+            error: 'No order records found for the date specified!',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: order,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error,
+        });
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: 'No order records on the date specfied!',
-    });
   }
 
   static modifyOrder(req, res) {
-    validate(req, res);
-
     const orderID = parseInt(req.params.id, 10);
-    const orderModified = ordersData.find(order => order.orderID === orderID);
-
-    if (orderModified) {
-      orderModified.orderItems = req.body.orderItems;
-      orderModified.orderBill = req.body.orderBill;
-
-      return res.status(200).json({
-        status: 200,
-        data: orderModified,
+    const { bill } = req.body;
+    return Order.update({ bill }, { where: { id: orderID } })
+      .then((order) => {
+        if (order.length === 1) {
+          return res.status(404).json({
+            status: 404,
+            error: 'Order with specified id does not exist!',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: order,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: `Order with id: ${orderID} does not exist!`,
-    });
   }
 
   static getOrders(req, res) {
-    const allOrders = ordersData;
-
-    return res.status(200).json({
-      status: 200,
-      data: allOrders,
-    });
+    return Order.findAll()
+      .then((orders) => {
+        return res.status(200).json({
+          status: 200,
+          data: orders,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
+      });
   }
 
   static getOrder(req, res) {
     const orderID = parseInt(req.params.id, 10);
-    const singleOrder = ordersData.find(order => order.orderID === orderID);
-
-    if (singleOrder) {
-      console.log(`This is ${singleOrder}`);
-      return res.status(200).json({
-        status: 200,
-        data: singleOrder,
+    return Order.findOne({ where: { id: orderID } })
+      .then((order) => {
+        return res.status(200).json({
+          status: 200,
+          data: order,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: `Order with ID: ${orderID} does not exist!`,
-    });
   }
 
   static cancelOrder(req, res) {
-    validate(req, res);
-
     const orderID = parseInt(req.params.id, 10);
-    const deletedOrder = ordersData.find(order => order.orderID === orderID);
-
-    if (deletedOrder) {
-      ordersData.splice(deletedOrder, 1);
-      return res.status(200).json({
-        status: 200,
-        data: deletedOrder,
+    return Order.destroy({ where: { id: orderID } })
+      .then((order) => {
+        if (order === 0) {
+          return res.status(404).json({
+            status: 404,
+            error: 'Order with specified id does not exist!',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: order,
+        });
+      })
+      .catch((error) => {
+        return res.status(500).json({
+          status: 500,
+          error: 'Internal Server Error!',
+        });
       });
-    }
-    return res.status(404).json({
-      status: 404,
-      error: `Order with ID: ${orderID} does not exist!`,
-    });
   }
 }
 

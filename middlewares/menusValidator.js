@@ -7,14 +7,15 @@ const thisDay = newDate.toISOString().slice(0, 10);
 
 const menusValidator = {
   menuBodyValidator: [
-    check('menuOptions')
+    /* check('menuOptions')
       .exists()
       .withMessage('Menu options is required!')
       .trim(),
+      */
     check('menuDate')
       .exists()
       .withMessage('Date is required!')
-      .isISO8601()
+      .isDataURI()
       .withMessage('Date must be of the format YYYY-MM-DD!')
       .trim(),
   ],

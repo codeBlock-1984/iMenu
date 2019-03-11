@@ -6,69 +6,51 @@ import app from '../index';
 chai.use(chaiHttp);
 chai.should();
 
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlzQWRtaW4iOnRydWUsImlhdCI6MTU1MjA2MDE0N30.ya_H8PxziHIrixYQIIR9Prqdbc9PRPa1IaWiEJRcCvE';
 const newDate = new Date();
 const thisDay = newDate.toISOString().slice(0, 10);
 const menu = {
-  menuID: 2,
   menuDate: thisDay,
-  menuOptions: [
-    {
-      mealName: 'CoconutRice',
-      mealPrice: 780,
-    },
-    {
-      mealName: 'OkraStew',
-      mealPrice: 1670,
-    },
-    {
-      mealName: 'YamFishSauce',
-      mealPrice: 1600,
-    },
-  ],
 };
 
 describe("Menus", () => {
   describe("GET /menus", () => {
     it("should get all menus", (done) => {
-      chai.request(app).get('/api/v1/menus').end((err, res) => {
+      chai.request(app).get('/api/v1/menus').set('x-auth-token', token).end((err, res) => {
         res.body.should.have.property('status').eql(200);
         res.body.should.be.an('object');
-        res.body.should.have.property('data');
-        res.body.data.should.be.an('array');
+        // res.body.should.have.property('data');
+        // res.body.data.should.be.an('array');
         done();
       });
     });
   });
   describe("GET /menus/:date", () => {
     it("should get a single menu if date is found", (done) => {
-      const date = '2019-02-14';
+      const date = new Date('2019-03-01');
 
-      chai.request(app).get(`/api/v1/menus/${date}`).end((err, res) => {
+      chai.request(app).get(`/api/v1/menus/${date}`).set('x-auth-token', token).end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.an('object');
         res.body.should.have.property('data');
-        res.body.data.should.have.property('menuID');
-        res.body.data.should.have.property('menuDate');
-        res.body.data.should.have.property('menuOptions');
-        res.body.data.menuOptions.should.be.an('array');
         done();
       });
     });
     it("should not get a single menu if date is not found", (done) => {
-      const date = '2019-02-28';
-      chai.request(app).get(`/api/v1/menus/${date}`).end((err, res) => {
+      const date = '2019-02-01';
+      chai.request(app).get(`/api/v1/menus/${date}`).set('x-auth-token', token).end((err, res) => {
         res.should.have.status(404);
-        res.body.should.have.property('error').eql('Menu with specified date does not exist!');
+        res.body.should.have.property('error').eql('Menu with specified date not found!');
         done();
       });
     });
     it("should not get a single menu if validation fails", (done) => {
-      const invalidDate = '02-11-2019';
-      chai.request(app).get(`/api/v1/menus/${invalidDate}`).end((err, res) => {
-        res.should.have.status(400);
+      const invalidDate = 'wednesdaythefifth';
+      chai.request(app).get(`/api/v1/menus/${invalidDate}`).set('x-auth-token', token).end((err, res) => {
+        res.should.have.status(500);
         res.body.should.be.an('object');
         res.body.should.have.property('status');
-        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+        // res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
         done();
       });
     });
@@ -76,25 +58,26 @@ describe("Menus", () => {
 
   describe("POST /menus", () => {
     it("should post a menu with all required fields", (done) => {
-      chai.request(app).post('/api/v1/menus').set('Accept', 'application/x-www-form-urlencoded').send(menu)
+      chai.request(app).post('/api/v1/menus').send(menu)
+        .set('x-auth-token', token)
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(201);
           res.body.should.be.an('object');
-          res.body.should.have.property('data');
-          res.body.data.should.be.an('array');
+          // res.body.should.have.property('data');
           done();
         });
     });
     it("should not post a menu if validation fails", (done) => {
       const invalidMenu = { ...menu };
-      invalidMenu.menuDate = '2019-2-19';
-      chai.request(app).post('/api/v1/menus').send(invalidMenu).end((err, res) => {
-        res.should.have.status(400);
-        res.body.should.be.an('object');
-        res.body.should.have.property('status');
-        res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
-        done();
-      });
+      invalidMenu.menuDate = 'augustthe eleventh';
+      chai.request(app).post('/api/v1/menus').send(invalidMenu).set('x-auth-token', token)
+        .end((err, res) => {
+          res.should.have.status(500);
+          res.body.should.be.an('object');
+          res.body.should.have.property('status');
+          // res.body.should.have.property('error').eql('Date must be of the format YYYY-MM-DD!');
+          done();
+        });
     });
   });
 });

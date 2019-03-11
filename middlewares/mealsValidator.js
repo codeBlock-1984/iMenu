@@ -1,23 +1,23 @@
 import { check } from 'express-validator/check';
-import meals from '../models/meals';
+import db from '../database/models';
 
-const mealsData = meals;
+const { Meal } = db;
 
 const mealsValidator = {
   mealBodyValidator: [
-    check('mealName')
+    check('name')
       .exists()
       .withMessage('Meal name is required!')
-      .isAlpha()
-      .withMessage('Meal name must be alphabet letters!')
+      .isString()
+      .withMessage('Meal name must be a String!')
       .isLength({ min: 2, max: 20 })
       .withMessage('Meal name must be between 2 and 20 characters!')
       .trim(),
-    check('mealPrice')
+    check('price')
       .exists()
       .withMessage('Price is required!')
-      .isCurrency({ symbol: '#' })
-      .withMessage('Price must be a valid currency amount')
+      .isInt()
+      .withMessage('Price must be an integer')
       .isLength({ min: 2, max: 5 })
       .withMessage('Price must be between 2 and 5 characters!'),
   ],
@@ -31,9 +31,13 @@ const mealsValidator = {
   checkMealExists: [
     check('mealName')
       .custom((mealName) => {
-        const existingMeal = mealsData.find(meal => meal.mealName === mealName);
-        if (!existingMeal) return true;
-        return false;
+        return Meal.findOne({ where: { name: mealName } })
+          .then((existingMeal) => {
+            return false;
+          })
+          .catch((error) => {
+            return true;
+          });
       })
       .withMessage('Meal already exists!'),
   ],

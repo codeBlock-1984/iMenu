@@ -1,18 +1,20 @@
 import { check } from 'express-validator/check';
+// import db from '../database/models';
 import orders from '../models/orders';
 
+// const { Order } = db;
 const ordersData = orders;
 const newDate = new Date();
 const thisDay = newDate.toISOString().slice(0, 10);
 
 const ordersValidator = {
   orderBodyValidator: [
-    check('userID')
+    check('userId')
       .exists()
       .withMessage('User ID is required!')
       .isInt({ allow_leading_zeroes: false })
       .withMessage('User ID must be a valid integer value!'),
-    check('menuID')
+    /*    check('menuID')
       .exists()
       .withMessage('Menu ID is required!')
       .isInt({ allow_leading_zeroes: false })
@@ -27,14 +29,16 @@ const ordersValidator = {
       .isISO8601()
       .withMessage('Date must be of the format YYYY-MM-DD!')
       .trim(),
-    check('orderBill')
+*/
+    check('bill')
       .exists()
       .withMessage('Bill is required!')
-      .isCurrency({ symbol: '#' })
-      .withMessage('Bill must be a valid currency amount')
+      .isInt()
+      .withMessage('Bill must be a valid integer amount!')
       .isLength({ min: 2, max: 5 })
       .withMessage('Bill must be between 2 and 5 characters!'),
   ],
+
   orderIDValidator: [
     check('id')
       .exists()

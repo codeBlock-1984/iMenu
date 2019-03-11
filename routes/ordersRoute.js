@@ -1,21 +1,19 @@
 import express from 'express';
 import ordersService from '../services/ordersService';
-import ordersValidator from '../middlewares/ordersValidator';
+import authorize from '../middlewares/authorize';
 
 const router = express.Router();
 const {
   placeOrder, getOrdersDay, modifyOrder, getOrder, getOrders, cancelOrder,
 } = ordersService;
-const {
-  orderBodyValidator, orderDateValidator, orderIDValidator, checkOrderExists, checkOrderAllowed,
-} = ordersValidator;
+const { isAuth, isAdmin } = authorize;
 
-router.post('/', orderBodyValidator, checkOrderExists, checkOrderAllowed, placeOrder);
-router.get('/:date', orderDateValidator, getOrdersDay);
-router.get('/', getOrders);
-router.get('/:id', getOrder);
-router.put('/:id', orderIDValidator, orderBodyValidator, modifyOrder);
-router.delete('/:id', orderIDValidator, cancelOrder);
+router.post('/', isAuth, placeOrder);
+router.get('/:date', isAuth, isAdmin, getOrdersDay);
+router.get('/', isAuth, isAdmin, getOrders);
+router.get('/:id', isAuth, isAdmin, getOrder);
+router.put('/:id', isAuth, modifyOrder);
+router.delete('/:id', isAuth, cancelOrder);
 
 
 export default router;
