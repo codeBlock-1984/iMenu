@@ -6,10 +6,10 @@ const { Menu } = db;
 
 class menusService {
   static setMenu(req, res) {
-    const { menuDate } = req.body;
-    return Menu.create(menuDate)
+    const { menuDate, mealOptions } = req.body;
+    return Menu.create({ menuDate })
       .then((menu) => {
-        // menu.addMeals(mealOptions);
+        menu.setMeals(mealOptions);
         return res.status(201).json({
           status: 201,
           data: menu,
@@ -18,7 +18,7 @@ class menusService {
       .catch((error) => {
         return res.status(500).json({
           status: 500,
-          error: 'Internal Server Error!',
+          error,
         });
       });
   }
